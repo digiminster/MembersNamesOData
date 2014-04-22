@@ -1,0 +1,2532 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="MNISModel" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityType Name="AddressType">
+        <Key>
+          <PropertyRef Name="AddressType_Id" />
+        </Key>
+        <Property Name="AddressType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="IsPhysicalAddress" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="MemberAddresses" Relationship="MNISModel.FK_MemberAddresses_AddressTypes" ToRole="MemberAddresses" FromRole="AddressTypes" />
+      </EntityType>
+      <EntityType Name="Area">
+        <Key>
+          <PropertyRef Name="Area_Id" />
+        </Key>
+        <Property Name="Area_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Notes" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="OnsAreaId" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="AreaType_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="AreaType" Relationship="MNISModel.FK_Areas_AreaTypes" ToRole="AreaTypes" FromRole="Areas" />
+        <NavigationProperty Name="ConstituencyAreas" Relationship="MNISModel.FK_ConstituencyAreas_Areas" ToRole="ConstituencyAreas" FromRole="Areas" />
+      </EntityType>
+      <EntityType Name="AreaType">
+        <Key>
+          <PropertyRef Name="AreaType_Id" />
+        </Key>
+        <Property Name="AreaType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Areas" Relationship="MNISModel.FK_Areas_AreaTypes" ToRole="Areas" FromRole="AreaTypes" />
+      </EntityType>
+      <EntityType Name="BiographyCategory">
+        <Key>
+          <PropertyRef Name="BiographyCategory_Id" />
+        </Key>
+        <Property Name="BiographyCategory_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="SortOrder" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsCommons" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLords" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="MemberBiographies" Relationship="MNISModel.FK_MemberBiographies_BiographyCategories" ToRole="MemberBiographies" FromRole="BiographyCategories" />
+      </EntityType>
+      <EntityType Name="Cabinet">
+        <Key>
+          <PropertyRef Name="Cabinet_Id" />
+        </Key>
+        <Property Name="Cabinet_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Ordinal" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsGovernment" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsOpposition" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="GovernmentPosts" Relationship="MNISModel.FK_GovernmentPosts_Cabinets" ToRole="GovernmentPosts" FromRole="Cabinets" />
+        <NavigationProperty Name="OppositionPosts" Relationship="MNISModel.FK_OppositionPosts_Cabinets" ToRole="OppositionPost" FromRole="Cabinet" />
+      </EntityType>
+      <EntityType Name="CommitteeClerk">
+        <Key>
+          <PropertyRef Name="CommitteeClerk_Id" />
+        </Key>
+        <Property Name="CommitteeClerk_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Committee_Id" Type="Edm.Int32" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="3" />
+        <NavigationProperty Name="Committee" Relationship="MNISModel.FK_CommitteeClerks_Committees" ToRole="Committees" FromRole="CommitteeClerks" />
+      </EntityType>
+      <EntityType Name="Committee">
+        <Key>
+          <PropertyRef Name="Committee_Id" />
+        </Key>
+        <Property Name="Committee_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CommitteeType_Id" Type="Edm.Int32" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="ParentCommittee_Id" Type="Edm.Int32" />
+        <Property Name="DateLordsAppointed" Type="Edm.DateTime" Precision="3" />
+        <Property Name="DateCommonsAppointed" Type="Edm.DateTime" Precision="3" />
+        <Property Name="Phone" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Url" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="CreatedFromCommittee_Id" Type="Edm.Int32" />
+        <Property Name="IsCommons" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLords" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="CommitteeClerks" Relationship="MNISModel.FK_CommitteeClerks_Committees" ToRole="CommitteeClerks" FromRole="Committees" />
+        <NavigationProperty Name="Committees1" Relationship="MNISModel.FK_Committees_Committees" ToRole="Committees1" FromRole="Committees" />
+        <NavigationProperty Name="Committee1" Relationship="MNISModel.FK_Committees_Committees" ToRole="Committees" FromRole="Committees1" />
+        <NavigationProperty Name="Committees11" Relationship="MNISModel.FK_Committees_Committees1" ToRole="Committees1" FromRole="Committees" />
+        <NavigationProperty Name="Committee2" Relationship="MNISModel.FK_Committees_Committees1" ToRole="Committees" FromRole="Committees1" />
+        <NavigationProperty Name="CommitteeType" Relationship="MNISModel.FK_Committees_CommitteeTypes" ToRole="CommitteeTypes" FromRole="Committees" />
+        <NavigationProperty Name="MemberCommittees" Relationship="MNISModel.FK_MemberCommittees_Committees" ToRole="MemberCommittees" FromRole="Committees" />
+      </EntityType>
+      <EntityType Name="CommitteeType">
+        <Key>
+          <PropertyRef Name="CommitteeType_Id" />
+        </Key>
+        <Property Name="CommitteeType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Committees" Relationship="MNISModel.FK_Committees_CommitteeTypes" ToRole="Committees" FromRole="CommitteeTypes" />
+      </EntityType>
+      <EntityType Name="Constituency">
+        <Key>
+          <PropertyRef Name="Constituency_Id" />
+        </Key>
+        <Property Name="Constituency_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="AlphaName" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="ConstituencyType_Id" Type="Edm.Int32" />
+        <Property Name="LocataId" Type="Edm.Int32" />
+        <Property Name="PrevConstituencyId" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="OldDodsId" Type="Edm.Int32" />
+        <Property Name="OldDisId" Type="Edm.Int32" />
+        <Property Name="ClerksConstituencyId" Type="Edm.Int32" />
+        <Property Name="ClerksConstituencyName" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="GisId" Type="Edm.Int32" />
+        <Property Name="PcaCode" Type="Edm.Int32" />
+        <Property Name="PconName" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="OsName" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="CreatedFromConstituency_Id" Type="Edm.Int32" />
+        <Property Name="ONSCode" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Constituencies1" Relationship="MNISModel.FK_Constituencies_Constituencies" ToRole="Constituencies1" FromRole="Constituencies" />
+        <NavigationProperty Name="Constituency1" Relationship="MNISModel.FK_Constituencies_Constituencies" ToRole="Constituencies" FromRole="Constituencies1" />
+        <NavigationProperty Name="ConstituencyType" Relationship="MNISModel.FK_Constituencies_ConstituencyTypes" ToRole="ConstituencyTypes" FromRole="Constituencies" />
+        <NavigationProperty Name="ConstituencyAreas" Relationship="MNISModel.FK_ConstituencyAreas_Constituencies" ToRole="ConstituencyAreas" FromRole="Constituencies" />
+        <NavigationProperty Name="MemberConstituencies" Relationship="MNISModel.FK_MemberConstituencies_Constituencies" ToRole="MemberConstituencies" FromRole="Constituencies" />
+        <NavigationProperty Name="MemberElectionsContesteds" Relationship="MNISModel.FK_MemberElectionsContested_Constituencies" ToRole="MemberElectionsContested" FromRole="Constituencies" />
+        <NavigationProperty Name="ConstituencyResults" Relationship="MNISModel.FK_ConstituencyResults_Constituencies" ToRole="ConstituencyResult" FromRole="Constituency" />
+      </EntityType>
+      <EntityType Name="ConstituencyArea">
+        <Key>
+          <PropertyRef Name="ConstituencyAreas_Id" />
+        </Key>
+        <Property Name="ConstituencyAreas_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Constituency_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Area_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="Area" Relationship="MNISModel.FK_ConstituencyAreas_Areas" ToRole="Areas" FromRole="ConstituencyAreas" />
+        <NavigationProperty Name="Constituency" Relationship="MNISModel.FK_ConstituencyAreas_Constituencies" ToRole="Constituencies" FromRole="ConstituencyAreas" />
+      </EntityType>
+      <EntityType Name="ConstituencyType">
+        <Key>
+          <PropertyRef Name="ConstituencyType_Id" />
+        </Key>
+        <Property Name="ConstituencyType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Constituencies" Relationship="MNISModel.FK_Constituencies_ConstituencyTypes" ToRole="Constituencies" FromRole="ConstituencyTypes" />
+      </EntityType>
+      <EntityType Name="Country">
+        <Key>
+          <PropertyRef Name="Country_Id" />
+        </Key>
+        <Property Name="Country_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsUnitedKingdom" Type="Edm.Boolean" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Members" Relationship="MNISModel.FK_Members_Countries" ToRole="Members" FromRole="Countries" />
+        <NavigationProperty Name="OtherParliaments" Relationship="MNISModel.FK_OtherParliaments_Countries" ToRole="OtherParliaments" FromRole="Countries" />
+      </EntityType>
+      <EntityType Name="Department">
+        <Key>
+          <PropertyRef Name="Department_Id" />
+        </Key>
+        <Property Name="Department_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        <Property Name="AlphaName" Type="Edm.String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        <Property Name="Acronym" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="SortOrder" Type="Edm.Int32" />
+        <Property Name="Address1" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address2" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address3" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address4" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address5" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Postcode" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="OtherAddress" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Phone" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="Email" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Url" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Minister" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Secretary" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="SortOrderOpposition" Type="Edm.Int32" />
+        <NavigationProperty Name="GovernmentPostDepartments" Relationship="MNISModel.FK_GovernmentPostDepartments_Departments" ToRole="GovernmentPostDepartments" FromRole="Departments" />
+        <NavigationProperty Name="OppositionPostDepartments" Relationship="MNISModel.FK_OppositionPostDepartments_Departments" ToRole="OppositionPostDepartments" FromRole="Departments" />
+        <NavigationProperty Name="AnsweringBodies" Relationship="MNISModel.FK_AnsweringBodies_Departments" ToRole="AnsweringBody" FromRole="Department" />
+      </EntityType>
+      <EntityType Name="DisqualificationType">
+        <Key>
+          <PropertyRef Name="DisqualificationType_Id" />
+        </Key>
+        <Property Name="DisqualificationType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="DisplayTextOnHoLOverview" Type="Edm.String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberDisqualifications" Relationship="MNISModel.FK_MemberDisqualification_DisqualificationTypes" ToRole="MemberDisqualifications" FromRole="DisqualificationTypes" />
+      </EntityType>
+      <EntityType Name="Election">
+        <Key>
+          <PropertyRef Name="Election_Id" />
+        </Key>
+        <Property Name="Election_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ElectionType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="ElectionDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <NavigationProperty Name="ElectionType" Relationship="MNISModel.FK_Elections_ElectionTypes" ToRole="ElectionTypes" FromRole="Elections" />
+        <NavigationProperty Name="MemberConstituencies" Relationship="MNISModel.FK_MemberConstituencies_Elections" ToRole="MemberConstituencies" FromRole="Elections" />
+        <NavigationProperty Name="MemberElectionsContesteds" Relationship="MNISModel.FK_MemberElectionsContested_Elections" ToRole="MemberElectionsContested" FromRole="Elections" />
+        <NavigationProperty Name="ConstituencyResults" Relationship="MNISModel.FK_ConstituencyResults_Elections" ToRole="ConstituencyResult" FromRole="Election" />
+      </EntityType>
+      <EntityType Name="ElectionType">
+        <Key>
+          <PropertyRef Name="ElectionType_Id" />
+        </Key>
+        <Property Name="ElectionType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Elections" Relationship="MNISModel.FK_Elections_ElectionTypes" ToRole="Elections" FromRole="ElectionTypes" />
+      </EntityType>
+      <EntityType Name="EndReason">
+        <Key>
+          <PropertyRef Name="EndReason_Id" />
+        </Key>
+        <Property Name="EndReason_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="EndDuringSession" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsCommons" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLords" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="MemberConstituencies" Relationship="MNISModel.FK_MemberConstituencies_EndReasons" ToRole="MemberConstituencies" FromRole="EndReasons" />
+        <NavigationProperty Name="MemberHouseMemberships" Relationship="MNISModel.FK_MemberHouseMemberships_EndReasons" ToRole="MemberHouseMemberships" FromRole="EndReasons" />
+      </EntityType>
+      <EntityType Name="EntryType">
+        <Key>
+          <PropertyRef Name="EntryType_Id" />
+        </Key>
+        <Property Name="EntryType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberConstituencies" Relationship="MNISModel.FK_MemberConstituencies_EntryTypes" ToRole="MemberConstituencies" FromRole="EntryTypes" />
+      </EntityType>
+      <EntityType Name="ExperienceType">
+        <Key>
+          <PropertyRef Name="ExperienceType_Id" />
+        </Key>
+        <Property Name="ExperienceType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberExperiences" Relationship="MNISModel.FK_MemberExperiences_ExperienceTypes" ToRole="MemberExperiences" FromRole="ExperienceTypes" />
+      </EntityType>
+      <EntityType Name="GovernmentPostDepartment">
+        <Key>
+          <PropertyRef Name="GovernmentPostDepartment_Id" />
+        </Key>
+        <Property Name="GovernmentPostDepartment_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="GovernmentPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Department_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Department" Relationship="MNISModel.FK_GovernmentPostDepartments_Departments" ToRole="Departments" FromRole="GovernmentPostDepartments" />
+        <NavigationProperty Name="GovernmentPost" Relationship="MNISModel.FK_GovernmentPostDepartments_GovernmentPosts" ToRole="GovernmentPosts" FromRole="GovernmentPostDepartments" />
+      </EntityType>
+      <EntityType Name="GovernmentPost">
+        <Key>
+          <PropertyRef Name="GovernmentPost_Id" />
+        </Key>
+        <Property Name="GovernmentPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        <Property Name="GovernmentRank_Id" Type="Edm.Int32" />
+        <Property Name="Promoted" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CabinetRank" Type="Edm.Int32" />
+        <Property Name="Cabinet_Id" Type="Edm.Int32" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="HansardName" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Cabinet" Relationship="MNISModel.FK_GovernmentPosts_Cabinets" ToRole="Cabinets" FromRole="GovernmentPosts" />
+        <NavigationProperty Name="GovernmentPostDepartments" Relationship="MNISModel.FK_GovernmentPostDepartments_GovernmentPosts" ToRole="GovernmentPostDepartments" FromRole="GovernmentPosts" />
+        <NavigationProperty Name="GovernmentRank" Relationship="MNISModel.FK_GovernmentPosts_GovernmentRanks" ToRole="GovernmentRanks" FromRole="GovernmentPosts" />
+        <NavigationProperty Name="MemberGovernmentPosts" Relationship="MNISModel.FK_MemberGovernmentPosts_GovernmentPosts" ToRole="MemberGovernmentPosts" FromRole="GovernmentPosts" />
+      </EntityType>
+      <EntityType Name="GovernmentRank">
+        <Key>
+          <PropertyRef Name="GovernmentRank_Id" />
+        </Key>
+        <Property Name="GovernmentRank_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="MinisterialRank" Type="Edm.Int32" />
+        <Property Name="StatsRank" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="ClerksRank" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="OrderRank" Type="Edm.Int32" />
+        <NavigationProperty Name="GovernmentPosts" Relationship="MNISModel.FK_GovernmentPosts_GovernmentRanks" ToRole="GovernmentPosts" FromRole="GovernmentRanks" />
+      </EntityType>
+      <EntityType Name="HonouraryPrefix">
+        <Key>
+          <PropertyRef Name="HonouraryPrefix_Id" />
+        </Key>
+        <Property Name="HonouraryPrefix_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="IsCommons" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLords" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Prefix" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="PrefixOrder" Type="Edm.Int32" />
+        <Property Name="PrefixAsSuffix" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="MemberPreferredNameHonouraryPrefixes" Relationship="MNISModel.FK_CommonsPreferredNameHonouraryPrefixes_HonouraryPrefixes" ToRole="MemberPreferredNameHonouraryPrefixes" FromRole="HonouraryPrefixes" />
+      </EntityType>
+      <EntityType Name="HonourList">
+        <Key>
+          <PropertyRef Name="HonourList_Id" />
+        </Key>
+        <Property Name="HonourList_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberHonours" Relationship="MNISModel.FK_MemberHonours_HonourLists" ToRole="MemberHonours" FromRole="HonourLists" />
+      </EntityType>
+      <EntityType Name="Honour">
+        <Key>
+          <PropertyRef Name="Honour_Id" />
+        </Key>
+        <Property Name="Honour_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Abbreviation" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="HonourType_Id" Type="Edm.Int32" />
+        <Property Name="Rank" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsPromoted" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="HonourType" Relationship="MNISModel.FK_Honours_HonourTypes" ToRole="HonourTypes" FromRole="Honours" />
+        <NavigationProperty Name="MemberHonours" Relationship="MNISModel.FK_MemberHonours_Honours" ToRole="MemberHonours" FromRole="Honours" />
+      </EntityType>
+      <EntityType Name="HonourType">
+        <Key>
+          <PropertyRef Name="HonourType_Id" />
+        </Key>
+        <Property Name="HonourType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Honours" Relationship="MNISModel.FK_Honours_HonourTypes" ToRole="Honours" FromRole="HonourTypes" />
+      </EntityType>
+      <EntityType Name="House">
+        <Key>
+          <PropertyRef Name="House_Id" />
+        </Key>
+        <Property Name="House_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="MemberHouseMemberships" Relationship="MNISModel.FK_MemberHouseMemberships_Houses" ToRole="MemberHouseMemberships" FromRole="Houses" />
+        <NavigationProperty Name="MemberMaidenSpeeches" Relationship="MNISModel.FK_MemberMaidenSpeeches_Houses" ToRole="MemberMaidenSpeeches" FromRole="Houses" />
+      </EntityType>
+      <EntityType Name="InterestCategory">
+        <Key>
+          <PropertyRef Name="InterestCategory_Id" />
+        </Key>
+        <Property Name="InterestCategory_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="SortOrder" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsCommons" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLords" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="CanHaveChildren" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+      <EntityType Name="LordsMembershipType">
+        <Key>
+          <PropertyRef Name="LordsMembershipType_Id" />
+        </Key>
+        <Property Name="LordsMembershipType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Abbreviation" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="TypeDescriptor" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="OverviewDisplayOrder" Type="Edm.Int32" />
+        <NavigationProperty Name="MemberLordsMembershipTypes" Relationship="MNISModel.FK_MemberLordsMembershipTypes_LordsMembershipTypes" ToRole="MemberLordsMembershipTypes" FromRole="LordsMembershipTypes" />
+      </EntityType>
+      <EntityType Name="LordsRank">
+        <Key>
+          <PropertyRef Name="LordsRank_Id" />
+        </Key>
+        <Property Name="LordsRank_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Abbreviation" Type="Edm.String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberLordsPreferredNames" Relationship="MNISModel.FK_MemberLordsPreferredNames_LordsRanks" ToRole="MemberLordsPreferredNames" FromRole="LordsRanks" />
+      </EntityType>
+      <EntityType Name="MemberAddress">
+        <Key>
+          <PropertyRef Name="MemberAddress_Id" />
+        </Key>
+        <Property Name="MemberAddress_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="AddressType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Address1" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address2" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address3" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address4" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Address5" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Postcode" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="OtherAddress" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Phone" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="Email" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="IsPreferred" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsWeb" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Fax" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="AddressType" Relationship="MNISModel.FK_MemberAddresses_AddressTypes" ToRole="AddressTypes" FromRole="MemberAddresses" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberAddresses_Member" ToRole="Members" FromRole="MemberAddresses" />
+      </EntityType>
+      <EntityType Name="MemberBiography">
+        <Key>
+          <PropertyRef Name="MemberBiography_Id" />
+        </Key>
+        <Property Name="MemberBiography_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="BiographyCategory_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Entry" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="BiographyCategory" Relationship="MNISModel.FK_MemberBiographies_BiographyCategories" ToRole="BiographyCategories" FromRole="MemberBiographies" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberBiographies_Member" ToRole="Members" FromRole="MemberBiographies" />
+      </EntityType>
+      <EntityType Name="MemberCommitteeChair">
+        <Key>
+          <PropertyRef Name="MemberCommitteeChair_Id" />
+        </Key>
+        <Property Name="MemberCommitteeChair_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MemberCommittee_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="MemberCommittee" Relationship="MNISModel.FK_MemberCommitteeChairs_MemberCommittees" ToRole="MemberCommittees" FromRole="MemberCommitteeChairs" />
+      </EntityType>
+      <EntityType Name="MemberCommittee">
+        <Key>
+          <PropertyRef Name="MemberCommittee_Id" />
+        </Key>
+        <Property Name="MemberCommittee_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Committee_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ExOfficio" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="EndNote" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Committee" Relationship="MNISModel.FK_MemberCommittees_Committees" ToRole="Committees" FromRole="MemberCommittees" />
+        <NavigationProperty Name="MemberCommitteeChairs" Relationship="MNISModel.FK_MemberCommitteeChairs_MemberCommittees" ToRole="MemberCommitteeChairs" FromRole="MemberCommittees" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberCommittees_Member" ToRole="Members" FromRole="MemberCommittees" />
+      </EntityType>
+      <EntityType Name="MemberConstituency">
+        <Key>
+          <PropertyRef Name="MemberConstituency_Id" />
+        </Key>
+        <Property Name="MemberConstituency_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Constituency_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="EntryType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="EndType_Id" Type="Edm.Int32" />
+        <Property Name="Election_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SwearInOrder" Type="Edm.Int32" />
+        <Property Name="Title_Id" Type="Edm.Int32" />
+        <Property Name="Forename" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Middlenames" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Surname" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="Notes" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="IsStandingDown" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="Constituency" Relationship="MNISModel.FK_MemberConstituencies_Constituencies" ToRole="Constituencies" FromRole="MemberConstituencies" />
+        <NavigationProperty Name="Election" Relationship="MNISModel.FK_MemberConstituencies_Elections" ToRole="Elections" FromRole="MemberConstituencies" />
+        <NavigationProperty Name="EndReason" Relationship="MNISModel.FK_MemberConstituencies_EndReasons" ToRole="EndReasons" FromRole="MemberConstituencies" />
+        <NavigationProperty Name="EntryType" Relationship="MNISModel.FK_MemberConstituencies_EntryTypes" ToRole="EntryTypes" FromRole="MemberConstituencies" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberConstituencies_Member" ToRole="Members" FromRole="MemberConstituencies" />
+        <NavigationProperty Name="Title" Relationship="MNISModel.FK_MemberConstituencies_Titles" ToRole="Titles" FromRole="MemberConstituencies" />
+      </EntityType>
+      <EntityType Name="MemberDisqualification">
+        <Key>
+          <PropertyRef Name="MemberDisqualification_Id" />
+        </Key>
+        <Property Name="MemberDisqualification_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MemberStatus_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DisqualificationType_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="DisqualificationType" Relationship="MNISModel.FK_MemberDisqualification_DisqualificationTypes" ToRole="DisqualificationTypes" FromRole="MemberDisqualifications" />
+        <NavigationProperty Name="MemberStatus" Relationship="MNISModel.FK_MemberDisqualifications_MemberStatuses" ToRole="MemberStatuses" FromRole="MemberDisqualifications" />
+      </EntityType>
+      <EntityType Name="MemberElectionsContested">
+        <Key>
+          <PropertyRef Name="MemberElectionContested_Id" />
+        </Key>
+        <Property Name="MemberElectionContested_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Constituency_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Election_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Constituency" Relationship="MNISModel.FK_MemberElectionsContested_Constituencies" ToRole="Constituencies" FromRole="MemberElectionsContested" />
+        <NavigationProperty Name="Election" Relationship="MNISModel.FK_MemberElectionsContested_Elections" ToRole="Elections" FromRole="MemberElectionsContested" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberElectionsContested_Member" ToRole="Members" FromRole="MemberElectionsContested" />
+      </EntityType>
+      <EntityType Name="MemberExperience">
+        <Key>
+          <PropertyRef Name="MemberExperience_Id" />
+        </Key>
+        <Property Name="MemberExperience_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Experience_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Organisation" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="StartDateDay" Type="Edm.Int32" />
+        <Property Name="StartDateMonth" Type="Edm.Int32" />
+        <Property Name="StartDateYear" Type="Edm.Int32" />
+        <Property Name="EndDateDay" Type="Edm.Int32" />
+        <Property Name="EndDateMonth" Type="Edm.Int32" />
+        <Property Name="EndDateYear" Type="Edm.Int32" />
+        <NavigationProperty Name="ExperienceType" Relationship="MNISModel.FK_MemberExperiences_ExperienceTypes" ToRole="ExperienceTypes" FromRole="MemberExperiences" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberExperiences_Member" ToRole="Members" FromRole="MemberExperiences" />
+      </EntityType>
+      <EntityType Name="MemberGovernmentPost">
+        <Key>
+          <PropertyRef Name="MemberGovernmentPost_Id" />
+        </Key>
+        <Property Name="MemberGovernmentPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="GovernmentPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="EndNote" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="IsUnpaid" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsJoint" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Email" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="GovernmentPost" Relationship="MNISModel.FK_MemberGovernmentPosts_GovernmentPosts" ToRole="GovernmentPosts" FromRole="MemberGovernmentPosts" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberGovernmentPosts_Member" ToRole="Members" FromRole="MemberGovernmentPosts" />
+      </EntityType>
+      <EntityType Name="MemberHonour">
+        <Key>
+          <PropertyRef Name="MemberHonour_Id" />
+        </Key>
+        <Property Name="MemberHonour_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Honour_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="HonourList_Id" Type="Edm.Int32" />
+        <Property Name="OtherHonour" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="HonourList" Relationship="MNISModel.FK_MemberHonours_HonourLists" ToRole="HonourLists" FromRole="MemberHonours" />
+        <NavigationProperty Name="Honour" Relationship="MNISModel.FK_MemberHonours_Honours" ToRole="Honours" FromRole="MemberHonours" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberHonours_Member" ToRole="Members" FromRole="MemberHonours" />
+      </EntityType>
+      <EntityType Name="MemberHouseMembership">
+        <Key>
+          <PropertyRef Name="MemberHouseMembership_Id" />
+        </Key>
+        <Property Name="MemberHouseMembership_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="House_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="EndReason_Id" Type="Edm.Int32" />
+        <Property Name="EndNotes" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="EndReason" Relationship="MNISModel.FK_MemberHouseMemberships_EndReasons" ToRole="EndReasons" FromRole="MemberHouseMemberships" />
+        <NavigationProperty Name="House" Relationship="MNISModel.FK_MemberHouseMemberships_Houses" ToRole="Houses" FromRole="MemberHouseMemberships" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberHouseMemberships_Member" ToRole="Members" FromRole="MemberHouseMemberships" />
+      </EntityType>
+      <EntityType Name="MemberLeaveOfAbsence">
+        <Key>
+          <PropertyRef Name="MemberLeaveOfAbsence_Id" />
+        </Key>
+        <Property Name="MemberLeaveOfAbsence_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MemberStatus_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="MemberStatus" Relationship="MNISModel.FK_MemberLeaveOfAbsence_MemberStatuses" ToRole="MemberStatuses" FromRole="MemberLeaveOfAbsence" />
+      </EntityType>
+      <EntityType Name="MemberLordsMembershipType">
+        <Key>
+          <PropertyRef Name="MemberLordsMembershipType_Id" />
+        </Key>
+        <Property Name="MemberLordsMembershipType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="LordsMembershipType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="LordsMembershipType" Relationship="MNISModel.FK_MemberLordsMembershipTypes_LordsMembershipTypes" ToRole="LordsMembershipTypes" FromRole="MemberLordsMembershipTypes" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberLordsMembershipTypes_Member" ToRole="Members" FromRole="MemberLordsMembershipTypes" />
+      </EntityType>
+      <EntityType Name="MemberLordsPreferredName">
+        <Key>
+          <PropertyRef Name="LordsPreferredName_Id" />
+        </Key>
+        <Property Name="LordsPreferredName_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MemberPreferredName_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="LordsRank_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="UseOf" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="UseThe" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Prenominal" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="Cardinality" Type="Edm.Int32" />
+        <Property Name="IsPrimaryTitle" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsKnownAs" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsByVirtue" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="SitsAs" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="IsOtherTitle" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="OtherTitle" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="DateOfAnnouncement" Type="Edm.DateTime" Precision="0" />
+        <Property Name="DateOfIntroduction" Type="Edm.DateTime" Precision="0" />
+        <Property Name="DateOfWrit" Type="Edm.DateTime" Precision="0" />
+        <Property Name="IsWritAM" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="LordsRank" Relationship="MNISModel.FK_MemberLordsPreferredNames_LordsRanks" ToRole="LordsRanks" FromRole="MemberLordsPreferredNames" />
+        <NavigationProperty Name="MemberPreferredName" Relationship="MNISModel.FK_LordsPreferredNames_MemberPreferredNames" ToRole="MemberPreferredNames" FromRole="MemberLordsPreferredNames" />
+      </EntityType>
+      <EntityType Name="MemberMaidenSpeech">
+        <Key>
+          <PropertyRef Name="MemberMaidenSpeech_Id" />
+        </Key>
+        <Property Name="MemberMaidenSpeech_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SpeechDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="Hansard" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Subject" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="House_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Url" Type="Edm.String" MaxLength="256" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="House" Relationship="MNISModel.FK_MemberMaidenSpeeches_Houses" ToRole="Houses" FromRole="MemberMaidenSpeeches" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberMaidenSpeeches_Members" ToRole="Members" FromRole="MemberMaidenSpeeches" />
+      </EntityType>
+      <EntityType Name="MemberOath">
+        <Key>
+          <PropertyRef Name="LordsOath_Id" />
+        </Key>
+        <Property Name="LordsOath_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="OathDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_LordsOaths_Member" ToRole="Members" FromRole="MemberOaths" />
+      </EntityType>
+      <EntityType Name="MemberObituary">
+        <Key>
+          <PropertyRef Name="MemberObituary_Id" />
+        </Key>
+        <Property Name="MemberObituary_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="ObituaryUrl" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberObituaries_Member" ToRole="Members" FromRole="MemberObituaries" />
+      </EntityType>
+      <EntityType Name="MemberOppositionPost">
+        <Key>
+          <PropertyRef Name="MemberOppositionPost_Id" />
+        </Key>
+        <Property Name="MemberOppositionPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="OppositionPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="EndNote" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="IsUnpaid" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsJoint" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Email" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberOppositionPosts_Member" ToRole="Members" FromRole="MemberOppositionPosts" />
+        <NavigationProperty Name="OppositionPost" Relationship="MNISModel.FK_MemberOppositionPosts_OppositionPosts" ToRole="OppositionPosts" FromRole="MemberOppositionPosts" />
+      </EntityType>
+      <EntityType Name="MemberOtherParliament">
+        <Key>
+          <PropertyRef Name="MemberOtherParliament_Id" />
+        </Key>
+        <Property Name="MemberOtherParliament_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="OtherParliament_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberOtherParliaments_Member" ToRole="Members" FromRole="MemberOtherParliaments" />
+        <NavigationProperty Name="OtherParliament" Relationship="MNISModel.FK_MemberOtherParliaments_OtherParliaments" ToRole="OtherParliaments" FromRole="MemberOtherParliaments" />
+      </EntityType>
+      <EntityType Name="MemberParliamentaryPost">
+        <Key>
+          <PropertyRef Name="MemberParliamentaryPost_Id" />
+        </Key>
+        <Property Name="MemberParliamentaryPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ParliamentaryPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="EndNote" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="IsUnpaid" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsJoint" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Email" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberParliamentaryPosts_Member" ToRole="Members" FromRole="MemberParliamentaryPosts" />
+        <NavigationProperty Name="ParliamentaryPost" Relationship="MNISModel.FK_MemberParliamentaryPosts_ParliamentaryPosts" ToRole="ParliamentaryPosts" FromRole="MemberParliamentaryPosts" />
+      </EntityType>
+      <EntityType Name="MemberParty">
+        <Key>
+          <PropertyRef Name="MemberParty_Id" />
+        </Key>
+        <Property Name="MemberParty_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Party_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PartySubType_Id" Type="Edm.Int32" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="Notes" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberParties_Member" ToRole="Members" FromRole="MemberParties" />
+        <NavigationProperty Name="Party" Relationship="MNISModel.FK_MemberParties_Parties" ToRole="Parties" FromRole="MemberParties" />
+        <NavigationProperty Name="PartySubType" Relationship="MNISModel.FK_MemberParties_PartySubTypes" ToRole="PartySubTypes" FromRole="MemberParties" />
+      </EntityType>
+      <EntityType Name="MemberPreferredNameHonouraryPrefix">
+        <Key>
+          <PropertyRef Name="MemberPreferredNameHonouraryPrefix_Id" />
+        </Key>
+        <Property Name="MemberPreferredNameHonouraryPrefix_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MemberPreferredName_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="HonouraryPrefix_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="HonouraryPrefix" Relationship="MNISModel.FK_CommonsPreferredNameHonouraryPrefixes_HonouraryPrefixes" ToRole="HonouraryPrefixes" FromRole="MemberPreferredNameHonouraryPrefixes" />
+        <NavigationProperty Name="MemberPreferredName" Relationship="MNISModel.FK_CommonsPreferredNameHonouraryPrefixes_CommonsPreferredNames" ToRole="MemberPreferredNames" FromRole="MemberPreferredNameHonouraryPrefixes" />
+      </EntityType>
+      <EntityType Name="MemberPreferredName">
+        <Key>
+          <PropertyRef Name="MemberPreferredName_Id" />
+        </Key>
+        <Property Name="MemberPreferredName_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title_Id" Type="Edm.Int32" />
+        <Property Name="Forename" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="MiddleNames" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Surname" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Suffix" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="AddressAs" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true" />
+        <Property Name="NameDisplayAs" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        <Property Name="NameListAs" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        <Property Name="NameFullTitle" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberLordsPreferredNames" Relationship="MNISModel.FK_LordsPreferredNames_MemberPreferredNames" ToRole="MemberLordsPreferredNames" FromRole="MemberPreferredNames" />
+        <NavigationProperty Name="MemberPreferredNameHonouraryPrefixes" Relationship="MNISModel.FK_CommonsPreferredNameHonouraryPrefixes_CommonsPreferredNames" ToRole="MemberPreferredNameHonouraryPrefixes" FromRole="MemberPreferredNames" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_CommonsPreferredNames_Member" ToRole="Members" FromRole="MemberPreferredNames" />
+        <NavigationProperty Name="Title" Relationship="MNISModel.FK_CommonsPreferredNames_Titles" ToRole="Titles" FromRole="MemberPreferredNames" />
+      </EntityType>
+      <EntityType Name="Member">
+        <Key>
+          <PropertyRef Name="Member_Id" />
+        </Key>
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Forename" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="MiddleNames" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Surname" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="DateOfBirth" Type="Edm.DateTime" Precision="0" />
+        <Property Name="DateOfRetirement" Type="Edm.DateTime" Precision="0" />
+        <Property Name="DateOfDeath" Type="Edm.DateTime" Precision="0" />
+        <Property Name="TownOfBirth" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="BirthCountry_Id" Type="Edm.Int32" />
+        <Property Name="Gender" Type="Edm.String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        <Property Name="Notes" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="DateOfAnnouncement" Type="Edm.DateTime" Precision="0" />
+        <Property Name="DateOfIntroduction" Type="Edm.DateTime" Precision="0" />
+        <Property Name="DateOfWrit" Type="Edm.DateTime" Precision="0" />
+        <Property Name="IsWritAm" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="NameDisplayAs" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        <Property Name="NameListAs" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        <Property Name="NameFullTitle" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        <Property Name="House" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="Party" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="PartyAbbrev" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="PartySubType" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="MembershipFrom" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="CurrentStatus" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="Dods_Id" Type="Edm.Int32" />
+        <Property Name="Pims_Id" Type="Edm.Int32" />
+        <Property Name="Party_Id" Type="Edm.Int32" />
+        <Property Name="CurrentStatus_Id" Type="Edm.Int32" />
+        <Property Name="MembershipFrom_Id" Type="Edm.Int32" />
+        <Property Name="Name_Id" Type="Edm.Int32" />
+        <Property Name="CurrentStatusDate" Type="Edm.DateTime" Precision="0" />
+        <Property Name="CurrentStatusReason" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="CurrentStatusActive" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="NameSortAs" Type="Edm.String" MaxLength="450" FixedLength="false" Unicode="true" />
+        <Property Name="NameSortAs1" Type="Edm.String" MaxLength="450" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Country" Relationship="MNISModel.FK_Members_Countries" ToRole="Countries" FromRole="Members" />
+        <NavigationProperty Name="MemberAddresses" Relationship="MNISModel.FK_MemberAddresses_Member" ToRole="MemberAddresses" FromRole="Members" />
+        <NavigationProperty Name="MemberBiographies" Relationship="MNISModel.FK_MemberBiographies_Member" ToRole="MemberBiographies" FromRole="Members" />
+        <NavigationProperty Name="MemberCommittees" Relationship="MNISModel.FK_MemberCommittees_Member" ToRole="MemberCommittees" FromRole="Members" />
+        <NavigationProperty Name="MemberConstituencies" Relationship="MNISModel.FK_MemberConstituencies_Member" ToRole="MemberConstituencies" FromRole="Members" />
+        <NavigationProperty Name="MemberElectionsContesteds" Relationship="MNISModel.FK_MemberElectionsContested_Member" ToRole="MemberElectionsContested" FromRole="Members" />
+        <NavigationProperty Name="MemberExperiences" Relationship="MNISModel.FK_MemberExperiences_Member" ToRole="MemberExperiences" FromRole="Members" />
+        <NavigationProperty Name="MemberGovernmentPosts" Relationship="MNISModel.FK_MemberGovernmentPosts_Member" ToRole="MemberGovernmentPosts" FromRole="Members" />
+        <NavigationProperty Name="MemberHonours" Relationship="MNISModel.FK_MemberHonours_Member" ToRole="MemberHonours" FromRole="Members" />
+        <NavigationProperty Name="MemberHouseMemberships" Relationship="MNISModel.FK_MemberHouseMemberships_Member" ToRole="MemberHouseMemberships" FromRole="Members" />
+        <NavigationProperty Name="MemberLordsMembershipTypes" Relationship="MNISModel.FK_MemberLordsMembershipTypes_Member" ToRole="MemberLordsMembershipTypes" FromRole="Members" />
+        <NavigationProperty Name="MemberMaidenSpeeches" Relationship="MNISModel.FK_MemberMaidenSpeeches_Members" ToRole="MemberMaidenSpeeches" FromRole="Members" />
+        <NavigationProperty Name="MemberOaths" Relationship="MNISModel.FK_LordsOaths_Member" ToRole="MemberOaths" FromRole="Members" />
+        <NavigationProperty Name="MemberObituaries" Relationship="MNISModel.FK_MemberObituaries_Member" ToRole="MemberObituaries" FromRole="Members" />
+        <NavigationProperty Name="MemberOppositionPosts" Relationship="MNISModel.FK_MemberOppositionPosts_Member" ToRole="MemberOppositionPosts" FromRole="Members" />
+        <NavigationProperty Name="MemberOtherParliaments" Relationship="MNISModel.FK_MemberOtherParliaments_Member" ToRole="MemberOtherParliaments" FromRole="Members" />
+        <NavigationProperty Name="MemberParliamentaryPosts" Relationship="MNISModel.FK_MemberParliamentaryPosts_Member" ToRole="MemberParliamentaryPosts" FromRole="Members" />
+        <NavigationProperty Name="MemberParties" Relationship="MNISModel.FK_MemberParties_Member" ToRole="MemberParties" FromRole="Members" />
+        <NavigationProperty Name="MemberPreferredNames" Relationship="MNISModel.FK_CommonsPreferredNames_Member" ToRole="MemberPreferredNames" FromRole="Members" />
+        <NavigationProperty Name="MemberStatuses" Relationship="MNISModel.FK_MemberExclusions_Member" ToRole="MemberStatuses" FromRole="Members" />
+        <NavigationProperty Name="MemberStaffs" Relationship="MNISModel.FK_MemberStaff_Members" ToRole="MemberStaff" FromRole="Members" />
+        <NavigationProperty Name="MemberKnownAs" Relationship="MNISModel.FK_MemberKnownAs_Members" ToRole="MemberKnownA" FromRole="Member" />
+        <NavigationProperty Name="ConstituencyCandidates" Relationship="MNISModel.FK_ConstituencyCandidates_Members" ToRole="ConstituencyCandidate" FromRole="Member" />
+      </EntityType>
+      <EntityType Name="MemberStaff">
+        <Key>
+          <PropertyRef Name="MemberStaff_Id" />
+        </Key>
+        <Property Name="MemberStaff_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title_Id" Type="Edm.Int32" />
+        <Property Name="Forename" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Middlenames" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Surname" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="AddedWhen" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="RemovedWhen" Type="Edm.DateTime" Precision="3" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberStaff_Members" ToRole="Members" FromRole="MemberStaff" />
+        <NavigationProperty Name="Title" Relationship="MNISModel.FK_MemberStaff_Titles" ToRole="Titles" FromRole="MemberStaff" />
+      </EntityType>
+      <EntityType Name="MemberStatus">
+        <Key>
+          <PropertyRef Name="MemberStatus_Id" />
+        </Key>
+        <Property Name="MemberStatus_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Status_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="MemberDisqualifications" Relationship="MNISModel.FK_MemberDisqualifications_MemberStatuses" ToRole="MemberDisqualifications" FromRole="MemberStatuses" />
+        <NavigationProperty Name="MemberLeaveOfAbsences" Relationship="MNISModel.FK_MemberLeaveOfAbsence_MemberStatuses" ToRole="MemberLeaveOfAbsence" FromRole="MemberStatuses" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberExclusions_Member" ToRole="Members" FromRole="MemberStatuses" />
+        <NavigationProperty Name="Status" Relationship="MNISModel.FK_MemberExclusions_ExclusionTypes" ToRole="Statuses" FromRole="MemberStatuses" />
+        <NavigationProperty Name="MemberSuspensions" Relationship="MNISModel.FK_MemberSuspensions_MemberStatuses" ToRole="MemberSuspensions" FromRole="MemberStatuses" />
+      </EntityType>
+      <EntityType Name="MemberSuspension">
+        <Key>
+          <PropertyRef Name="MemberSuspension_Id" />
+        </Key>
+        <Property Name="MemberSuspension_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MemberStatus_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Sitting" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="ReasonUrl" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Reason" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="HansardUrl" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Hansard" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="SittingDays" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CalendarDays" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="MemberStatus" Relationship="MNISModel.FK_MemberSuspensions_MemberStatuses" ToRole="MemberStatuses" FromRole="MemberSuspensions" />
+      </EntityType>
+      <EntityType Name="OppositionPostDepartment">
+        <Key>
+          <PropertyRef Name="OppositionPostDepartment_Id" />
+        </Key>
+        <Property Name="OppositionPostDepartment_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="OppositionPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Department_Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Department" Relationship="MNISModel.FK_OppositionPostDepartments_Departments" ToRole="Departments" FromRole="OppositionPostDepartments" />
+        <NavigationProperty Name="OppositionPost" Relationship="MNISModel.FK_OppositionPostDepartments_OppositionPosts" ToRole="OppositionPosts" FromRole="OppositionPostDepartments" />
+      </EntityType>
+      <EntityType Name="OppositionPost">
+        <Key>
+          <PropertyRef Name="OppositionPost_Id" />
+        </Key>
+        <Property Name="OppositionPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        <Property Name="Description" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="CabinetRank" Type="Edm.Int32" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="Promoted" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Cabinet_Id" Type="Edm.Int32" />
+        <Property Name="OppositionRank_Id" Type="Edm.Int32" />
+        <Property Name="HansardName" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberOppositionPosts" Relationship="MNISModel.FK_MemberOppositionPosts_OppositionPosts" ToRole="MemberOppositionPosts" FromRole="OppositionPosts" />
+        <NavigationProperty Name="OppositionPostDepartments" Relationship="MNISModel.FK_OppositionPostDepartments_OppositionPosts" ToRole="OppositionPostDepartments" FromRole="OppositionPosts" />
+        <NavigationProperty Name="Cabinet" Relationship="MNISModel.FK_OppositionPosts_Cabinets" ToRole="Cabinet" FromRole="OppositionPost" />
+        <NavigationProperty Name="OppositionRank" Relationship="MNISModel.FK_OppositionPosts_OppositionRanks" ToRole="OppositionRank" FromRole="OppositionPost" />
+      </EntityType>
+      <EntityType Name="OtherParliament">
+        <Key>
+          <PropertyRef Name="OtherParliament_Id" />
+        </Key>
+        <Property Name="OtherParliament_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="ParliamentType_Id" Type="Edm.Int32" />
+        <Property Name="Notes" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <Property Name="Country_Id" Type="Edm.Int32" />
+        <NavigationProperty Name="Country" Relationship="MNISModel.FK_OtherParliaments_Countries" ToRole="Countries" FromRole="OtherParliaments" />
+        <NavigationProperty Name="MemberOtherParliaments" Relationship="MNISModel.FK_MemberOtherParliaments_OtherParliaments" ToRole="MemberOtherParliaments" FromRole="OtherParliaments" />
+        <NavigationProperty Name="ParliamentType" Relationship="MNISModel.FK_OtherParliaments_ParliamentTypes" ToRole="ParliamentTypes" FromRole="OtherParliaments" />
+      </EntityType>
+      <EntityType Name="ParliamentaryPost">
+        <Key>
+          <PropertyRef Name="ParliamentaryPost_Id" />
+        </Key>
+        <Property Name="ParliamentaryPost_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        <Property Name="ParliamentaryRank_Id" Type="Edm.Int32" />
+        <Property Name="ExcludeFromCount" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Promoted" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="3" />
+        <Property Name="IsCommons" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLords" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HansardName" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberParliamentaryPosts" Relationship="MNISModel.FK_MemberParliamentaryPosts_ParliamentaryPosts" ToRole="MemberParliamentaryPosts" FromRole="ParliamentaryPosts" />
+        <NavigationProperty Name="ParliamentaryRank" Relationship="MNISModel.FK_ParliamentaryPosts_ParliamentaryRanks" ToRole="ParliamentaryRanks" FromRole="ParliamentaryPosts" />
+      </EntityType>
+      <EntityType Name="ParliamentaryRank">
+        <Key>
+          <PropertyRef Name="ParliamentaryRank_Id" />
+        </Key>
+        <Property Name="ParliamentaryRank_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="IsPromoted" Type="Edm.Boolean" />
+        <NavigationProperty Name="ParliamentaryPosts" Relationship="MNISModel.FK_ParliamentaryPosts_ParliamentaryRanks" ToRole="ParliamentaryPosts" FromRole="ParliamentaryRanks" />
+      </EntityType>
+      <EntityType Name="ParliamentType">
+        <Key>
+          <PropertyRef Name="ParliamentType_Id" />
+        </Key>
+        <Property Name="ParliamentType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="OtherParliaments" Relationship="MNISModel.FK_OtherParliaments_ParliamentTypes" ToRole="OtherParliaments" FromRole="ParliamentTypes" />
+      </EntityType>
+      <EntityType Name="Party">
+        <Key>
+          <PropertyRef Name="Party_Id" />
+        </Key>
+        <Property Name="Party_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Abbreviation" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="Initials" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true" />
+        <Property Name="Colour" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true" />
+        <Property Name="TextColour" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true" />
+        <Property Name="LowResLogo" Type="Edm.Binary" MaxLength="Max" FixedLength="false" />
+        <Property Name="HighResLogo" Type="Edm.Binary" MaxLength="Max" FixedLength="false" />
+        <Property Name="IsCommons" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLords" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="OldDISId" Type="Edm.Int32" />
+        <Property Name="HoLMainParty" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HoLOrder" Type="Edm.Int32" />
+        <Property Name="HighResMIMEType" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="false" />
+        <Property Name="LowResMIMEType" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="MemberParties" Relationship="MNISModel.FK_MemberParties_Parties" ToRole="MemberParties" FromRole="Parties" />
+        <NavigationProperty Name="PartySubTypes" Relationship="MNISModel.FK_PartySubTypes_Parties1" ToRole="PartySubTypes" FromRole="Parties" />
+        <NavigationProperty Name="Statuses" Relationship="MNISModel.FK_Statuses_Parties" ToRole="Statuses" FromRole="Parties" />
+        <NavigationProperty Name="ConstituencyCandidates" Relationship="MNISModel.FK_ConstituencyCandidates_Parties" ToRole="ConstituencyCandidate" FromRole="Party" />
+      </EntityType>
+      <EntityType Name="PartySubType">
+        <Key>
+          <PropertyRef Name="PartySubType_Id" />
+        </Key>
+        <Property Name="PartySubType_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Party_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="MemberParties" Relationship="MNISModel.FK_MemberParties_PartySubTypes" ToRole="MemberParties" FromRole="PartySubTypes" />
+        <NavigationProperty Name="Party" Relationship="MNISModel.FK_PartySubTypes_Parties1" ToRole="Parties" FromRole="PartySubTypes" />
+      </EntityType>
+      <EntityType Name="PhotoOutput">
+        <Key>
+          <PropertyRef Name="PhotoOutput_Id" />
+        </Key>
+        <Property Name="PhotoOutput_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Width" Type="Edm.Int32" />
+        <Property Name="Height" Type="Edm.Int32" />
+      </EntityType>
+      <EntityType Name="Status">
+        <Key>
+          <PropertyRef Name="Status_Id" />
+        </Key>
+        <Property Name="Status_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="IsSuspension" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsLeave" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsDisqualification" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="ChangePartyTo_Id" Type="Edm.Int32" />
+        <NavigationProperty Name="MemberStatuses" Relationship="MNISModel.FK_MemberExclusions_ExclusionTypes" ToRole="MemberStatuses" FromRole="Statuses" />
+        <NavigationProperty Name="Party" Relationship="MNISModel.FK_Statuses_Parties" ToRole="Parties" FromRole="Statuses" />
+      </EntityType>
+      <EntityType Name="Title">
+        <Key>
+          <PropertyRef Name="Title_Id" />
+        </Key>
+        <Property Name="Title_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="MemberConstituencies" Relationship="MNISModel.FK_MemberConstituencies_Titles" ToRole="MemberConstituencies" FromRole="Titles" />
+        <NavigationProperty Name="MemberPreferredNames" Relationship="MNISModel.FK_CommonsPreferredNames_Titles" ToRole="MemberPreferredNames" FromRole="Titles" />
+        <NavigationProperty Name="MemberStaffs" Relationship="MNISModel.FK_MemberStaff_Titles" ToRole="MemberStaff" FromRole="Titles" />
+      </EntityType>
+      <EntityType Name="MemberKnownA">
+        <Key>
+          <PropertyRef Name="MemberKnownAs_Id" />
+        </Key>
+        <Property Name="MemberKnownAs_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Member_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="FirstName" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="MiddleNames" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Surname" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="StartDate" Type="Edm.DateTime" Nullable="false" Precision="0" />
+        <Property Name="EndDate" Type="Edm.DateTime" Precision="0" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_MemberKnownAs_Members" ToRole="Member" FromRole="MemberKnownA" />
+      </EntityType>
+      <EntityType Name="OppositionRank">
+        <Key>
+          <PropertyRef Name="OppositionRank_Id" />
+        </Key>
+        <Property Name="OppositionRank_Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="MinisterialRank" Type="Edm.Int32" />
+        <Property Name="StatsRank" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="ClerksRank" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="OrderRank" Type="Edm.Int32" />
+        <Property Name="UpdatedBy" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="UpdatedWhen" Type="Edm.DateTime" Precision="3" />
+        <NavigationProperty Name="OppositionPosts" Relationship="MNISModel.FK_OppositionPosts_OppositionRanks" ToRole="OppositionPost" FromRole="OppositionRank" />
+      </EntityType>
+      <EntityType Name="ConstituencyCandidate">
+        <Key>
+          <PropertyRef Name="ConstituencyCandidate_Id" />
+        </Key>
+        <Property Name="ConstituencyCandidate_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ConstituencyResult_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Candidate" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Member_Id" Type="Edm.Int32" />
+        <Property Name="Party" Type="Edm.String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        <Property Name="Party_Id" Type="Edm.Int32" />
+        <Property Name="Votes" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ResultChange" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="ConstituencyResult" Relationship="MNISModel.FK_ConstituencyCandidates_ConstituencyResults" ToRole="ConstituencyResult" FromRole="ConstituencyCandidate" />
+        <NavigationProperty Name="Member" Relationship="MNISModel.FK_ConstituencyCandidates_Members" ToRole="Member" FromRole="ConstituencyCandidate" />
+        <NavigationProperty Name="Party1" Relationship="MNISModel.FK_ConstituencyCandidates_Parties" ToRole="Party" FromRole="ConstituencyCandidate" />
+      </EntityType>
+      <EntityType Name="ConstituencyResult">
+        <Key>
+          <PropertyRef Name="ConstituencyResult_Id" />
+        </Key>
+        <Property Name="ConstituencyResult_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Constituency_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Election_Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Electorate" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Result" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="Constituency" Relationship="MNISModel.FK_ConstituencyResults_Constituencies" ToRole="Constituency" FromRole="ConstituencyResult" />
+        <NavigationProperty Name="ConstituencyCandidates" Relationship="MNISModel.FK_ConstituencyCandidates_ConstituencyResults" ToRole="ConstituencyCandidate" FromRole="ConstituencyResult" />
+        <NavigationProperty Name="Election" Relationship="MNISModel.FK_ConstituencyResults_Elections" ToRole="Election" FromRole="ConstituencyResult" />
+      </EntityType>
+      <EntityType Name="AnsweringBody">
+        <Key>
+          <PropertyRef Name="AnsweringBody_Id" />
+        </Key>
+        <Property Name="AnsweringBody_Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+        <Property Name="SortName" Type="Edm.String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+        <Property Name="Target" Type="Edm.String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+        <Property Name="Gender" Type="Edm.String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        <Property Name="OralDaysNotice" Type="Edm.Int32" Nullable="false" />
+        <Property Name="AnswersSubstantive" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AnswersTopical" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AnswersOrdinary" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="NamedDay" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Department_Id" Type="Edm.Int32" />
+        <Property Name="ShowName" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="false" />
+        <Property Name="ShowInTitle" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="ShortName" Type="Edm.String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="Department" Relationship="MNISModel.FK_AnsweringBodies_Departments" ToRole="Department" FromRole="AnsweringBody" />
+      </EntityType>
+      <EntityType Name="CommonsRegisterPublication">
+        <Key>
+          <PropertyRef Name="CommonsRegisterPublication_Id" />
+        </Key>
+        <Property Name="CommonsRegisterPublication_Id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="PublicationDate" Type="Edm.DateTime" Nullable="false" Precision="3" />
+        <Property Name="Notes" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true" />
+      </EntityType>
+      <Association Name="FK_MemberAddresses_AddressTypes">
+        <End Type="MNISModel.AddressType" Role="AddressTypes" Multiplicity="1" />
+        <End Type="MNISModel.MemberAddress" Role="MemberAddresses" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="AddressTypes">
+            <PropertyRef Name="AddressType_Id" />
+          </Principal>
+          <Dependent Role="MemberAddresses">
+            <PropertyRef Name="AddressType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Areas_AreaTypes">
+        <End Type="MNISModel.AreaType" Role="AreaTypes" Multiplicity="1" />
+        <End Type="MNISModel.Area" Role="Areas" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="AreaTypes">
+            <PropertyRef Name="AreaType_Id" />
+          </Principal>
+          <Dependent Role="Areas">
+            <PropertyRef Name="AreaType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConstituencyAreas_Areas">
+        <End Type="MNISModel.Area" Role="Areas" Multiplicity="1" />
+        <End Type="MNISModel.ConstituencyArea" Role="ConstituencyAreas" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Areas">
+            <PropertyRef Name="Area_Id" />
+          </Principal>
+          <Dependent Role="ConstituencyAreas">
+            <PropertyRef Name="Area_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberBiographies_BiographyCategories">
+        <End Type="MNISModel.BiographyCategory" Role="BiographyCategories" Multiplicity="1" />
+        <End Type="MNISModel.MemberBiography" Role="MemberBiographies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="BiographyCategories">
+            <PropertyRef Name="BiographyCategory_Id" />
+          </Principal>
+          <Dependent Role="MemberBiographies">
+            <PropertyRef Name="BiographyCategory_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_GovernmentPosts_Cabinets">
+        <End Type="MNISModel.Cabinet" Role="Cabinets" Multiplicity="0..1" />
+        <End Type="MNISModel.GovernmentPost" Role="GovernmentPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Cabinets">
+            <PropertyRef Name="Cabinet_Id" />
+          </Principal>
+          <Dependent Role="GovernmentPosts">
+            <PropertyRef Name="Cabinet_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_OppositionPosts_Cabinets">
+        <End Type="MNISModel.Cabinet" Role="Cabinet" Multiplicity="0..1" />
+        <End Type="MNISModel.OppositionPost" Role="OppositionPost" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Cabinet">
+            <PropertyRef Name="Cabinet_Id" />
+          </Principal>
+          <Dependent Role="OppositionPost">
+            <PropertyRef Name="Cabinet_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_CommitteeClerks_Committees">
+        <End Type="MNISModel.Committee" Role="Committees" Multiplicity="0..1" />
+        <End Type="MNISModel.CommitteeClerk" Role="CommitteeClerks" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Committees">
+            <PropertyRef Name="Committee_Id" />
+          </Principal>
+          <Dependent Role="CommitteeClerks">
+            <PropertyRef Name="Committee_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Committees_Committees">
+        <End Type="MNISModel.Committee" Role="Committees" Multiplicity="0..1" />
+        <End Type="MNISModel.Committee" Role="Committees1" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Committees">
+            <PropertyRef Name="Committee_Id" />
+          </Principal>
+          <Dependent Role="Committees1">
+            <PropertyRef Name="ParentCommittee_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Committees_Committees1">
+        <End Type="MNISModel.Committee" Role="Committees" Multiplicity="0..1" />
+        <End Type="MNISModel.Committee" Role="Committees1" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Committees">
+            <PropertyRef Name="Committee_Id" />
+          </Principal>
+          <Dependent Role="Committees1">
+            <PropertyRef Name="CreatedFromCommittee_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Committees_CommitteeTypes">
+        <End Type="MNISModel.CommitteeType" Role="CommitteeTypes" Multiplicity="0..1" />
+        <End Type="MNISModel.Committee" Role="Committees" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="CommitteeTypes">
+            <PropertyRef Name="CommitteeType_Id" />
+          </Principal>
+          <Dependent Role="Committees">
+            <PropertyRef Name="CommitteeType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberCommittees_Committees">
+        <End Type="MNISModel.Committee" Role="Committees" Multiplicity="1" />
+        <End Type="MNISModel.MemberCommittee" Role="MemberCommittees" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Committees">
+            <PropertyRef Name="Committee_Id" />
+          </Principal>
+          <Dependent Role="MemberCommittees">
+            <PropertyRef Name="Committee_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Constituencies_Constituencies">
+        <End Type="MNISModel.Constituency" Role="Constituencies" Multiplicity="0..1" />
+        <End Type="MNISModel.Constituency" Role="Constituencies1" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Constituencies">
+            <PropertyRef Name="Constituency_Id" />
+          </Principal>
+          <Dependent Role="Constituencies1">
+            <PropertyRef Name="CreatedFromConstituency_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Constituencies_ConstituencyTypes">
+        <End Type="MNISModel.ConstituencyType" Role="ConstituencyTypes" Multiplicity="0..1" />
+        <End Type="MNISModel.Constituency" Role="Constituencies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ConstituencyTypes">
+            <PropertyRef Name="ConstituencyType_Id" />
+          </Principal>
+          <Dependent Role="Constituencies">
+            <PropertyRef Name="ConstituencyType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConstituencyAreas_Constituencies">
+        <End Type="MNISModel.Constituency" Role="Constituencies" Multiplicity="1" />
+        <End Type="MNISModel.ConstituencyArea" Role="ConstituencyAreas" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Constituencies">
+            <PropertyRef Name="Constituency_Id" />
+          </Principal>
+          <Dependent Role="ConstituencyAreas">
+            <PropertyRef Name="Constituency_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberConstituencies_Constituencies">
+        <End Type="MNISModel.Constituency" Role="Constituencies" Multiplicity="1" />
+        <End Type="MNISModel.MemberConstituency" Role="MemberConstituencies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Constituencies">
+            <PropertyRef Name="Constituency_Id" />
+          </Principal>
+          <Dependent Role="MemberConstituencies">
+            <PropertyRef Name="Constituency_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberElectionsContested_Constituencies">
+        <End Type="MNISModel.Constituency" Role="Constituencies" Multiplicity="1" />
+        <End Type="MNISModel.MemberElectionsContested" Role="MemberElectionsContested" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Constituencies">
+            <PropertyRef Name="Constituency_Id" />
+          </Principal>
+          <Dependent Role="MemberElectionsContested">
+            <PropertyRef Name="Constituency_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConstituencyResults_Constituencies">
+        <End Type="MNISModel.Constituency" Role="Constituency" Multiplicity="1" />
+        <End Type="MNISModel.ConstituencyResult" Role="ConstituencyResult" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Constituency">
+            <PropertyRef Name="Constituency_Id" />
+          </Principal>
+          <Dependent Role="ConstituencyResult">
+            <PropertyRef Name="Constituency_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Members_Countries">
+        <End Type="MNISModel.Country" Role="Countries" Multiplicity="0..1" />
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Countries">
+            <PropertyRef Name="Country_Id" />
+          </Principal>
+          <Dependent Role="Members">
+            <PropertyRef Name="BirthCountry_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_OtherParliaments_Countries">
+        <End Type="MNISModel.Country" Role="Countries" Multiplicity="0..1" />
+        <End Type="MNISModel.OtherParliament" Role="OtherParliaments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Countries">
+            <PropertyRef Name="Country_Id" />
+          </Principal>
+          <Dependent Role="OtherParliaments">
+            <PropertyRef Name="Country_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_GovernmentPostDepartments_Departments">
+        <End Type="MNISModel.Department" Role="Departments" Multiplicity="1" />
+        <End Type="MNISModel.GovernmentPostDepartment" Role="GovernmentPostDepartments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Departments">
+            <PropertyRef Name="Department_Id" />
+          </Principal>
+          <Dependent Role="GovernmentPostDepartments">
+            <PropertyRef Name="Department_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_OppositionPostDepartments_Departments">
+        <End Type="MNISModel.Department" Role="Departments" Multiplicity="1" />
+        <End Type="MNISModel.OppositionPostDepartment" Role="OppositionPostDepartments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Departments">
+            <PropertyRef Name="Department_Id" />
+          </Principal>
+          <Dependent Role="OppositionPostDepartments">
+            <PropertyRef Name="Department_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_AnsweringBodies_Departments">
+        <End Type="MNISModel.Department" Role="Department" Multiplicity="0..1" />
+        <End Type="MNISModel.AnsweringBody" Role="AnsweringBody" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Department">
+            <PropertyRef Name="Department_Id" />
+          </Principal>
+          <Dependent Role="AnsweringBody">
+            <PropertyRef Name="Department_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberDisqualification_DisqualificationTypes">
+        <End Type="MNISModel.DisqualificationType" Role="DisqualificationTypes" Multiplicity="1" />
+        <End Type="MNISModel.MemberDisqualification" Role="MemberDisqualifications" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="DisqualificationTypes">
+            <PropertyRef Name="DisqualificationType_Id" />
+          </Principal>
+          <Dependent Role="MemberDisqualifications">
+            <PropertyRef Name="DisqualificationType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Elections_ElectionTypes">
+        <End Type="MNISModel.ElectionType" Role="ElectionTypes" Multiplicity="1" />
+        <End Type="MNISModel.Election" Role="Elections" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ElectionTypes">
+            <PropertyRef Name="ElectionType_Id" />
+          </Principal>
+          <Dependent Role="Elections">
+            <PropertyRef Name="ElectionType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberConstituencies_Elections">
+        <End Type="MNISModel.Election" Role="Elections" Multiplicity="1" />
+        <End Type="MNISModel.MemberConstituency" Role="MemberConstituencies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Elections">
+            <PropertyRef Name="Election_Id" />
+          </Principal>
+          <Dependent Role="MemberConstituencies">
+            <PropertyRef Name="Election_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberElectionsContested_Elections">
+        <End Type="MNISModel.Election" Role="Elections" Multiplicity="1" />
+        <End Type="MNISModel.MemberElectionsContested" Role="MemberElectionsContested" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Elections">
+            <PropertyRef Name="Election_Id" />
+          </Principal>
+          <Dependent Role="MemberElectionsContested">
+            <PropertyRef Name="Election_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConstituencyResults_Elections">
+        <End Type="MNISModel.Election" Role="Election" Multiplicity="1" />
+        <End Type="MNISModel.ConstituencyResult" Role="ConstituencyResult" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Election">
+            <PropertyRef Name="Election_Id" />
+          </Principal>
+          <Dependent Role="ConstituencyResult">
+            <PropertyRef Name="Election_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberConstituencies_EndReasons">
+        <End Type="MNISModel.EndReason" Role="EndReasons" Multiplicity="0..1" />
+        <End Type="MNISModel.MemberConstituency" Role="MemberConstituencies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EndReasons">
+            <PropertyRef Name="EndReason_Id" />
+          </Principal>
+          <Dependent Role="MemberConstituencies">
+            <PropertyRef Name="EndType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberHouseMemberships_EndReasons">
+        <End Type="MNISModel.EndReason" Role="EndReasons" Multiplicity="0..1" />
+        <End Type="MNISModel.MemberHouseMembership" Role="MemberHouseMemberships" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EndReasons">
+            <PropertyRef Name="EndReason_Id" />
+          </Principal>
+          <Dependent Role="MemberHouseMemberships">
+            <PropertyRef Name="EndReason_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberConstituencies_EntryTypes">
+        <End Type="MNISModel.EntryType" Role="EntryTypes" Multiplicity="1" />
+        <End Type="MNISModel.MemberConstituency" Role="MemberConstituencies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EntryTypes">
+            <PropertyRef Name="EntryType_Id" />
+          </Principal>
+          <Dependent Role="MemberConstituencies">
+            <PropertyRef Name="EntryType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberExperiences_ExperienceTypes">
+        <End Type="MNISModel.ExperienceType" Role="ExperienceTypes" Multiplicity="1" />
+        <End Type="MNISModel.MemberExperience" Role="MemberExperiences" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ExperienceTypes">
+            <PropertyRef Name="ExperienceType_Id" />
+          </Principal>
+          <Dependent Role="MemberExperiences">
+            <PropertyRef Name="Experience_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_GovernmentPostDepartments_GovernmentPosts">
+        <End Type="MNISModel.GovernmentPost" Role="GovernmentPosts" Multiplicity="1" />
+        <End Type="MNISModel.GovernmentPostDepartment" Role="GovernmentPostDepartments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="GovernmentPosts">
+            <PropertyRef Name="GovernmentPost_Id" />
+          </Principal>
+          <Dependent Role="GovernmentPostDepartments">
+            <PropertyRef Name="GovernmentPost_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_GovernmentPosts_GovernmentRanks">
+        <End Type="MNISModel.GovernmentRank" Role="GovernmentRanks" Multiplicity="0..1" />
+        <End Type="MNISModel.GovernmentPost" Role="GovernmentPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="GovernmentRanks">
+            <PropertyRef Name="GovernmentRank_Id" />
+          </Principal>
+          <Dependent Role="GovernmentPosts">
+            <PropertyRef Name="GovernmentRank_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberGovernmentPosts_GovernmentPosts">
+        <End Type="MNISModel.GovernmentPost" Role="GovernmentPosts" Multiplicity="1" />
+        <End Type="MNISModel.MemberGovernmentPost" Role="MemberGovernmentPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="GovernmentPosts">
+            <PropertyRef Name="GovernmentPost_Id" />
+          </Principal>
+          <Dependent Role="MemberGovernmentPosts">
+            <PropertyRef Name="GovernmentPost_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_CommonsPreferredNameHonouraryPrefixes_HonouraryPrefixes">
+        <End Type="MNISModel.HonouraryPrefix" Role="HonouraryPrefixes" Multiplicity="1" />
+        <End Type="MNISModel.MemberPreferredNameHonouraryPrefix" Role="MemberPreferredNameHonouraryPrefixes" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="HonouraryPrefixes">
+            <PropertyRef Name="HonouraryPrefix_Id" />
+          </Principal>
+          <Dependent Role="MemberPreferredNameHonouraryPrefixes">
+            <PropertyRef Name="HonouraryPrefix_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberHonours_HonourLists">
+        <End Type="MNISModel.HonourList" Role="HonourLists" Multiplicity="0..1" />
+        <End Type="MNISModel.MemberHonour" Role="MemberHonours" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="HonourLists">
+            <PropertyRef Name="HonourList_Id" />
+          </Principal>
+          <Dependent Role="MemberHonours">
+            <PropertyRef Name="HonourList_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Honours_HonourTypes">
+        <End Type="MNISModel.HonourType" Role="HonourTypes" Multiplicity="0..1" />
+        <End Type="MNISModel.Honour" Role="Honours" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="HonourTypes">
+            <PropertyRef Name="HonourType_Id" />
+          </Principal>
+          <Dependent Role="Honours">
+            <PropertyRef Name="HonourType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberHonours_Honours">
+        <End Type="MNISModel.Honour" Role="Honours" Multiplicity="1" />
+        <End Type="MNISModel.MemberHonour" Role="MemberHonours" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Honours">
+            <PropertyRef Name="Honour_Id" />
+          </Principal>
+          <Dependent Role="MemberHonours">
+            <PropertyRef Name="Honour_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberHouseMemberships_Houses">
+        <End Type="MNISModel.House" Role="Houses" Multiplicity="1" />
+        <End Type="MNISModel.MemberHouseMembership" Role="MemberHouseMemberships" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Houses">
+            <PropertyRef Name="House_Id" />
+          </Principal>
+          <Dependent Role="MemberHouseMemberships">
+            <PropertyRef Name="House_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberMaidenSpeeches_Houses">
+        <End Type="MNISModel.House" Role="Houses" Multiplicity="1" />
+        <End Type="MNISModel.MemberMaidenSpeech" Role="MemberMaidenSpeeches" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Houses">
+            <PropertyRef Name="House_Id" />
+          </Principal>
+          <Dependent Role="MemberMaidenSpeeches">
+            <PropertyRef Name="House_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberLordsMembershipTypes_LordsMembershipTypes">
+        <End Type="MNISModel.LordsMembershipType" Role="LordsMembershipTypes" Multiplicity="1" />
+        <End Type="MNISModel.MemberLordsMembershipType" Role="MemberLordsMembershipTypes" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="LordsMembershipTypes">
+            <PropertyRef Name="LordsMembershipType_Id" />
+          </Principal>
+          <Dependent Role="MemberLordsMembershipTypes">
+            <PropertyRef Name="LordsMembershipType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberLordsPreferredNames_LordsRanks">
+        <End Type="MNISModel.LordsRank" Role="LordsRanks" Multiplicity="1" />
+        <End Type="MNISModel.MemberLordsPreferredName" Role="MemberLordsPreferredNames" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="LordsRanks">
+            <PropertyRef Name="LordsRank_Id" />
+          </Principal>
+          <Dependent Role="MemberLordsPreferredNames">
+            <PropertyRef Name="LordsRank_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberAddresses_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberAddress" Role="MemberAddresses" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberAddresses">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberBiographies_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberBiography" Role="MemberBiographies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberBiographies">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberCommitteeChairs_MemberCommittees">
+        <End Type="MNISModel.MemberCommittee" Role="MemberCommittees" Multiplicity="1" />
+        <End Type="MNISModel.MemberCommitteeChair" Role="MemberCommitteeChairs" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MemberCommittees">
+            <PropertyRef Name="MemberCommittee_Id" />
+          </Principal>
+          <Dependent Role="MemberCommitteeChairs">
+            <PropertyRef Name="MemberCommittee_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberCommittees_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberCommittee" Role="MemberCommittees" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberCommittees">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberConstituencies_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberConstituency" Role="MemberConstituencies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberConstituencies">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberConstituencies_Titles">
+        <End Type="MNISModel.Title" Role="Titles" Multiplicity="0..1" />
+        <End Type="MNISModel.MemberConstituency" Role="MemberConstituencies" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Titles">
+            <PropertyRef Name="Title_Id" />
+          </Principal>
+          <Dependent Role="MemberConstituencies">
+            <PropertyRef Name="Title_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberDisqualifications_MemberStatuses">
+        <End Type="MNISModel.MemberStatus" Role="MemberStatuses" Multiplicity="1" />
+        <End Type="MNISModel.MemberDisqualification" Role="MemberDisqualifications" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MemberStatuses">
+            <PropertyRef Name="MemberStatus_Id" />
+          </Principal>
+          <Dependent Role="MemberDisqualifications">
+            <PropertyRef Name="MemberStatus_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberElectionsContested_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberElectionsContested" Role="MemberElectionsContested" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberElectionsContested">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberExperiences_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberExperience" Role="MemberExperiences" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberExperiences">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberGovernmentPosts_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberGovernmentPost" Role="MemberGovernmentPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberGovernmentPosts">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberHonours_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberHonour" Role="MemberHonours" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberHonours">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberHouseMemberships_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberHouseMembership" Role="MemberHouseMemberships" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberHouseMemberships">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberLeaveOfAbsence_MemberStatuses">
+        <End Type="MNISModel.MemberStatus" Role="MemberStatuses" Multiplicity="1" />
+        <End Type="MNISModel.MemberLeaveOfAbsence" Role="MemberLeaveOfAbsence" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MemberStatuses">
+            <PropertyRef Name="MemberStatus_Id" />
+          </Principal>
+          <Dependent Role="MemberLeaveOfAbsence">
+            <PropertyRef Name="MemberStatus_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberLordsMembershipTypes_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberLordsMembershipType" Role="MemberLordsMembershipTypes" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberLordsMembershipTypes">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_LordsPreferredNames_MemberPreferredNames">
+        <End Type="MNISModel.MemberPreferredName" Role="MemberPreferredNames" Multiplicity="1" />
+        <End Type="MNISModel.MemberLordsPreferredName" Role="MemberLordsPreferredNames" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MemberPreferredNames">
+            <PropertyRef Name="MemberPreferredName_Id" />
+          </Principal>
+          <Dependent Role="MemberLordsPreferredNames">
+            <PropertyRef Name="MemberPreferredName_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberMaidenSpeeches_Members">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberMaidenSpeech" Role="MemberMaidenSpeeches" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberMaidenSpeeches">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_LordsOaths_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberOath" Role="MemberOaths" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberOaths">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberObituaries_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberObituary" Role="MemberObituaries" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberObituaries">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberOppositionPosts_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberOppositionPost" Role="MemberOppositionPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberOppositionPosts">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberOppositionPosts_OppositionPosts">
+        <End Type="MNISModel.OppositionPost" Role="OppositionPosts" Multiplicity="1" />
+        <End Type="MNISModel.MemberOppositionPost" Role="MemberOppositionPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="OppositionPosts">
+            <PropertyRef Name="OppositionPost_Id" />
+          </Principal>
+          <Dependent Role="MemberOppositionPosts">
+            <PropertyRef Name="OppositionPost_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberOtherParliaments_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberOtherParliament" Role="MemberOtherParliaments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberOtherParliaments">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberOtherParliaments_OtherParliaments">
+        <End Type="MNISModel.OtherParliament" Role="OtherParliaments" Multiplicity="1" />
+        <End Type="MNISModel.MemberOtherParliament" Role="MemberOtherParliaments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="OtherParliaments">
+            <PropertyRef Name="OtherParliament_Id" />
+          </Principal>
+          <Dependent Role="MemberOtherParliaments">
+            <PropertyRef Name="OtherParliament_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberParliamentaryPosts_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberParliamentaryPost" Role="MemberParliamentaryPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberParliamentaryPosts">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberParliamentaryPosts_ParliamentaryPosts">
+        <End Type="MNISModel.ParliamentaryPost" Role="ParliamentaryPosts" Multiplicity="1" />
+        <End Type="MNISModel.MemberParliamentaryPost" Role="MemberParliamentaryPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ParliamentaryPosts">
+            <PropertyRef Name="ParliamentaryPost_Id" />
+          </Principal>
+          <Dependent Role="MemberParliamentaryPosts">
+            <PropertyRef Name="ParliamentaryPost_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberParties_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberParty" Role="MemberParties" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberParties">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberParties_Parties">
+        <End Type="MNISModel.Party" Role="Parties" Multiplicity="1" />
+        <End Type="MNISModel.MemberParty" Role="MemberParties" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Parties">
+            <PropertyRef Name="Party_Id" />
+          </Principal>
+          <Dependent Role="MemberParties">
+            <PropertyRef Name="Party_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberParties_PartySubTypes">
+        <End Type="MNISModel.PartySubType" Role="PartySubTypes" Multiplicity="0..1" />
+        <End Type="MNISModel.MemberParty" Role="MemberParties" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="PartySubTypes">
+            <PropertyRef Name="PartySubType_Id" />
+          </Principal>
+          <Dependent Role="MemberParties">
+            <PropertyRef Name="PartySubType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_CommonsPreferredNameHonouraryPrefixes_CommonsPreferredNames">
+        <End Type="MNISModel.MemberPreferredName" Role="MemberPreferredNames" Multiplicity="1" />
+        <End Type="MNISModel.MemberPreferredNameHonouraryPrefix" Role="MemberPreferredNameHonouraryPrefixes" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MemberPreferredNames">
+            <PropertyRef Name="MemberPreferredName_Id" />
+          </Principal>
+          <Dependent Role="MemberPreferredNameHonouraryPrefixes">
+            <PropertyRef Name="MemberPreferredName_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_CommonsPreferredNames_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberPreferredName" Role="MemberPreferredNames" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberPreferredNames">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_CommonsPreferredNames_Titles">
+        <End Type="MNISModel.Title" Role="Titles" Multiplicity="0..1" />
+        <End Type="MNISModel.MemberPreferredName" Role="MemberPreferredNames" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Titles">
+            <PropertyRef Name="Title_Id" />
+          </Principal>
+          <Dependent Role="MemberPreferredNames">
+            <PropertyRef Name="Title_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberExclusions_Member">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberStatus" Role="MemberStatuses" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberStatuses">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberStaff_Members">
+        <End Type="MNISModel.Member" Role="Members" Multiplicity="1" />
+        <End Type="MNISModel.MemberStaff" Role="MemberStaff" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Members">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberStaff">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberKnownAs_Members">
+        <End Type="MNISModel.Member" Role="Member" Multiplicity="1" />
+        <End Type="MNISModel.MemberKnownA" Role="MemberKnownA" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Member">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="MemberKnownA">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConstituencyCandidates_Members">
+        <End Type="MNISModel.Member" Role="Member" Multiplicity="0..1" />
+        <End Type="MNISModel.ConstituencyCandidate" Role="ConstituencyCandidate" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Member">
+            <PropertyRef Name="Member_Id" />
+          </Principal>
+          <Dependent Role="ConstituencyCandidate">
+            <PropertyRef Name="Member_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberStaff_Titles">
+        <End Type="MNISModel.Title" Role="Titles" Multiplicity="0..1" />
+        <End Type="MNISModel.MemberStaff" Role="MemberStaff" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Titles">
+            <PropertyRef Name="Title_Id" />
+          </Principal>
+          <Dependent Role="MemberStaff">
+            <PropertyRef Name="Title_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberExclusions_ExclusionTypes">
+        <End Type="MNISModel.Status" Role="Statuses" Multiplicity="1" />
+        <End Type="MNISModel.MemberStatus" Role="MemberStatuses" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Statuses">
+            <PropertyRef Name="Status_Id" />
+          </Principal>
+          <Dependent Role="MemberStatuses">
+            <PropertyRef Name="Status_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_MemberSuspensions_MemberStatuses">
+        <End Type="MNISModel.MemberStatus" Role="MemberStatuses" Multiplicity="1" />
+        <End Type="MNISModel.MemberSuspension" Role="MemberSuspensions" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MemberStatuses">
+            <PropertyRef Name="MemberStatus_Id" />
+          </Principal>
+          <Dependent Role="MemberSuspensions">
+            <PropertyRef Name="MemberStatus_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_OppositionPostDepartments_OppositionPosts">
+        <End Type="MNISModel.OppositionPost" Role="OppositionPosts" Multiplicity="1" />
+        <End Type="MNISModel.OppositionPostDepartment" Role="OppositionPostDepartments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="OppositionPosts">
+            <PropertyRef Name="OppositionPost_Id" />
+          </Principal>
+          <Dependent Role="OppositionPostDepartments">
+            <PropertyRef Name="OppositionPost_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_OppositionPosts_OppositionRanks">
+        <End Type="MNISModel.OppositionRank" Role="OppositionRank" Multiplicity="0..1" />
+        <End Type="MNISModel.OppositionPost" Role="OppositionPost" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="OppositionRank">
+            <PropertyRef Name="OppositionRank_Id" />
+          </Principal>
+          <Dependent Role="OppositionPost">
+            <PropertyRef Name="OppositionRank_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_OtherParliaments_ParliamentTypes">
+        <End Type="MNISModel.ParliamentType" Role="ParliamentTypes" Multiplicity="0..1" />
+        <End Type="MNISModel.OtherParliament" Role="OtherParliaments" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ParliamentTypes">
+            <PropertyRef Name="ParliamentType_Id" />
+          </Principal>
+          <Dependent Role="OtherParliaments">
+            <PropertyRef Name="ParliamentType_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ParliamentaryPosts_ParliamentaryRanks">
+        <End Type="MNISModel.ParliamentaryRank" Role="ParliamentaryRanks" Multiplicity="0..1" />
+        <End Type="MNISModel.ParliamentaryPost" Role="ParliamentaryPosts" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ParliamentaryRanks">
+            <PropertyRef Name="ParliamentaryRank_Id" />
+          </Principal>
+          <Dependent Role="ParliamentaryPosts">
+            <PropertyRef Name="ParliamentaryRank_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_PartySubTypes_Parties1">
+        <End Type="MNISModel.Party" Role="Parties" Multiplicity="1" />
+        <End Type="MNISModel.PartySubType" Role="PartySubTypes" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Parties">
+            <PropertyRef Name="Party_Id" />
+          </Principal>
+          <Dependent Role="PartySubTypes">
+            <PropertyRef Name="Party_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_Statuses_Parties">
+        <End Type="MNISModel.Party" Role="Parties" Multiplicity="0..1" />
+        <End Type="MNISModel.Status" Role="Statuses" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Parties">
+            <PropertyRef Name="Party_Id" />
+          </Principal>
+          <Dependent Role="Statuses">
+            <PropertyRef Name="ChangePartyTo_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConstituencyCandidates_Parties">
+        <End Type="MNISModel.Party" Role="Party" Multiplicity="0..1" />
+        <End Type="MNISModel.ConstituencyCandidate" Role="ConstituencyCandidate" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Party">
+            <PropertyRef Name="Party_Id" />
+          </Principal>
+          <Dependent Role="ConstituencyCandidate">
+            <PropertyRef Name="Party_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK_ConstituencyCandidates_ConstituencyResults">
+        <End Type="MNISModel.ConstituencyResult" Role="ConstituencyResult" Multiplicity="1" />
+        <End Type="MNISModel.ConstituencyCandidate" Role="ConstituencyCandidate" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ConstituencyResult">
+            <PropertyRef Name="ConstituencyResult_Id" />
+          </Principal>
+          <Dependent Role="ConstituencyCandidate">
+            <PropertyRef Name="ConstituencyResult_Id" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+    </Schema>
+    <Schema Namespace="MNISServiceData" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="MNISEntities" m:IsDefaultEntityContainer="true" p6:LazyLoadingEnabled="true" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntitySet Name="AddressTypes" EntityType="MNISModel.AddressType" />
+        <EntitySet Name="Areas" EntityType="MNISModel.Area" />
+        <EntitySet Name="AreaTypes" EntityType="MNISModel.AreaType" />
+        <EntitySet Name="BiographyCategories" EntityType="MNISModel.BiographyCategory" />
+        <EntitySet Name="Cabinets" EntityType="MNISModel.Cabinet" />
+        <EntitySet Name="CommitteeClerks" EntityType="MNISModel.CommitteeClerk" />
+        <EntitySet Name="Committees" EntityType="MNISModel.Committee" />
+        <EntitySet Name="CommitteeTypes" EntityType="MNISModel.CommitteeType" />
+        <EntitySet Name="Constituencies" EntityType="MNISModel.Constituency" />
+        <EntitySet Name="ConstituencyAreas" EntityType="MNISModel.ConstituencyArea" />
+        <EntitySet Name="ConstituencyTypes" EntityType="MNISModel.ConstituencyType" />
+        <EntitySet Name="Countries" EntityType="MNISModel.Country" />
+        <EntitySet Name="Departments" EntityType="MNISModel.Department" />
+        <EntitySet Name="DisqualificationTypes" EntityType="MNISModel.DisqualificationType" />
+        <EntitySet Name="Elections" EntityType="MNISModel.Election" />
+        <EntitySet Name="ElectionTypes" EntityType="MNISModel.ElectionType" />
+        <EntitySet Name="EndReasons" EntityType="MNISModel.EndReason" />
+        <EntitySet Name="EntryTypes" EntityType="MNISModel.EntryType" />
+        <EntitySet Name="ExperienceTypes" EntityType="MNISModel.ExperienceType" />
+        <EntitySet Name="GovernmentPostDepartments" EntityType="MNISModel.GovernmentPostDepartment" />
+        <EntitySet Name="GovernmentPosts" EntityType="MNISModel.GovernmentPost" />
+        <EntitySet Name="GovernmentRanks" EntityType="MNISModel.GovernmentRank" />
+        <EntitySet Name="HonouraryPrefixes" EntityType="MNISModel.HonouraryPrefix" />
+        <EntitySet Name="HonourLists" EntityType="MNISModel.HonourList" />
+        <EntitySet Name="Honours" EntityType="MNISModel.Honour" />
+        <EntitySet Name="HonourTypes" EntityType="MNISModel.HonourType" />
+        <EntitySet Name="Houses" EntityType="MNISModel.House" />
+        <EntitySet Name="InterestCategories" EntityType="MNISModel.InterestCategory" />
+        <EntitySet Name="LordsMembershipTypes" EntityType="MNISModel.LordsMembershipType" />
+        <EntitySet Name="LordsRanks" EntityType="MNISModel.LordsRank" />
+        <EntitySet Name="MemberAddresses" EntityType="MNISModel.MemberAddress" />
+        <EntitySet Name="MemberBiographies" EntityType="MNISModel.MemberBiography" />
+        <EntitySet Name="MemberCommitteeChairs" EntityType="MNISModel.MemberCommitteeChair" />
+        <EntitySet Name="MemberCommittees" EntityType="MNISModel.MemberCommittee" />
+        <EntitySet Name="MemberConstituencies" EntityType="MNISModel.MemberConstituency" />
+        <EntitySet Name="MemberDisqualifications" EntityType="MNISModel.MemberDisqualification" />
+        <EntitySet Name="MemberElectionsContesteds" EntityType="MNISModel.MemberElectionsContested" />
+        <EntitySet Name="MemberExperiences" EntityType="MNISModel.MemberExperience" />
+        <EntitySet Name="MemberGovernmentPosts" EntityType="MNISModel.MemberGovernmentPost" />
+        <EntitySet Name="MemberHonours" EntityType="MNISModel.MemberHonour" />
+        <EntitySet Name="MemberHouseMemberships" EntityType="MNISModel.MemberHouseMembership" />
+        <EntitySet Name="MemberLeaveOfAbsences" EntityType="MNISModel.MemberLeaveOfAbsence" />
+        <EntitySet Name="MemberLordsMembershipTypes" EntityType="MNISModel.MemberLordsMembershipType" />
+        <EntitySet Name="MemberLordsPreferredNames" EntityType="MNISModel.MemberLordsPreferredName" />
+        <EntitySet Name="MemberMaidenSpeeches" EntityType="MNISModel.MemberMaidenSpeech" />
+        <EntitySet Name="MemberOaths" EntityType="MNISModel.MemberOath" />
+        <EntitySet Name="MemberObituaries" EntityType="MNISModel.MemberObituary" />
+        <EntitySet Name="MemberOppositionPosts" EntityType="MNISModel.MemberOppositionPost" />
+        <EntitySet Name="MemberOtherParliaments" EntityType="MNISModel.MemberOtherParliament" />
+        <EntitySet Name="MemberParliamentaryPosts" EntityType="MNISModel.MemberParliamentaryPost" />
+        <EntitySet Name="MemberParties" EntityType="MNISModel.MemberParty" />
+        <EntitySet Name="MemberPreferredNameHonouraryPrefixes" EntityType="MNISModel.MemberPreferredNameHonouraryPrefix" />
+        <EntitySet Name="MemberPreferredNames" EntityType="MNISModel.MemberPreferredName" />
+        <EntitySet Name="Members" EntityType="MNISModel.Member" />
+        <EntitySet Name="MemberStaffs" EntityType="MNISModel.MemberStaff" />
+        <EntitySet Name="MemberStatuses" EntityType="MNISModel.MemberStatus" />
+        <EntitySet Name="MemberSuspensions" EntityType="MNISModel.MemberSuspension" />
+        <EntitySet Name="OppositionPostDepartments" EntityType="MNISModel.OppositionPostDepartment" />
+        <EntitySet Name="OppositionPosts" EntityType="MNISModel.OppositionPost" />
+        <EntitySet Name="OtherParliaments" EntityType="MNISModel.OtherParliament" />
+        <EntitySet Name="ParliamentaryPosts" EntityType="MNISModel.ParliamentaryPost" />
+        <EntitySet Name="ParliamentaryRanks" EntityType="MNISModel.ParliamentaryRank" />
+        <EntitySet Name="ParliamentTypes" EntityType="MNISModel.ParliamentType" />
+        <EntitySet Name="Parties" EntityType="MNISModel.Party" />
+        <EntitySet Name="PartySubTypes" EntityType="MNISModel.PartySubType" />
+        <EntitySet Name="PhotoOutputs" EntityType="MNISModel.PhotoOutput" />
+        <EntitySet Name="Statuses" EntityType="MNISModel.Status" />
+        <EntitySet Name="Titles" EntityType="MNISModel.Title" />
+        <EntitySet Name="MemberKnownAs" EntityType="MNISModel.MemberKnownA" />
+        <EntitySet Name="OppositionRanks" EntityType="MNISModel.OppositionRank" />
+        <EntitySet Name="ConstituencyCandidates" EntityType="MNISModel.ConstituencyCandidate" />
+        <EntitySet Name="ConstituencyResults" EntityType="MNISModel.ConstituencyResult" />
+        <EntitySet Name="AnsweringBodies" EntityType="MNISModel.AnsweringBody" />
+        <EntitySet Name="CommonsRegisterPublications" EntityType="MNISModel.CommonsRegisterPublication" />
+        <AssociationSet Name="FK_MemberAddresses_AddressTypes" Association="MNISModel.FK_MemberAddresses_AddressTypes">
+          <End Role="AddressTypes" EntitySet="AddressTypes" />
+          <End Role="MemberAddresses" EntitySet="MemberAddresses" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Areas_AreaTypes" Association="MNISModel.FK_Areas_AreaTypes">
+          <End Role="Areas" EntitySet="Areas" />
+          <End Role="AreaTypes" EntitySet="AreaTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConstituencyAreas_Areas" Association="MNISModel.FK_ConstituencyAreas_Areas">
+          <End Role="Areas" EntitySet="Areas" />
+          <End Role="ConstituencyAreas" EntitySet="ConstituencyAreas" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberBiographies_BiographyCategories" Association="MNISModel.FK_MemberBiographies_BiographyCategories">
+          <End Role="BiographyCategories" EntitySet="BiographyCategories" />
+          <End Role="MemberBiographies" EntitySet="MemberBiographies" />
+        </AssociationSet>
+        <AssociationSet Name="FK_GovernmentPosts_Cabinets" Association="MNISModel.FK_GovernmentPosts_Cabinets">
+          <End Role="Cabinets" EntitySet="Cabinets" />
+          <End Role="GovernmentPosts" EntitySet="GovernmentPosts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_OppositionPosts_Cabinets" Association="MNISModel.FK_OppositionPosts_Cabinets">
+          <End Role="Cabinet" EntitySet="Cabinets" />
+          <End Role="OppositionPost" EntitySet="OppositionPosts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_CommitteeClerks_Committees" Association="MNISModel.FK_CommitteeClerks_Committees">
+          <End Role="CommitteeClerks" EntitySet="CommitteeClerks" />
+          <End Role="Committees" EntitySet="Committees" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Committees_Committees" Association="MNISModel.FK_Committees_Committees">
+          <End Role="Committees" EntitySet="Committees" />
+          <End Role="Committees1" EntitySet="Committees" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Committees_Committees1" Association="MNISModel.FK_Committees_Committees1">
+          <End Role="Committees" EntitySet="Committees" />
+          <End Role="Committees1" EntitySet="Committees" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Committees_CommitteeTypes" Association="MNISModel.FK_Committees_CommitteeTypes">
+          <End Role="Committees" EntitySet="Committees" />
+          <End Role="CommitteeTypes" EntitySet="CommitteeTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberCommittees_Committees" Association="MNISModel.FK_MemberCommittees_Committees">
+          <End Role="Committees" EntitySet="Committees" />
+          <End Role="MemberCommittees" EntitySet="MemberCommittees" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Constituencies_Constituencies" Association="MNISModel.FK_Constituencies_Constituencies">
+          <End Role="Constituencies" EntitySet="Constituencies" />
+          <End Role="Constituencies1" EntitySet="Constituencies" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Constituencies_ConstituencyTypes" Association="MNISModel.FK_Constituencies_ConstituencyTypes">
+          <End Role="Constituencies" EntitySet="Constituencies" />
+          <End Role="ConstituencyTypes" EntitySet="ConstituencyTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConstituencyAreas_Constituencies" Association="MNISModel.FK_ConstituencyAreas_Constituencies">
+          <End Role="Constituencies" EntitySet="Constituencies" />
+          <End Role="ConstituencyAreas" EntitySet="ConstituencyAreas" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberConstituencies_Constituencies" Association="MNISModel.FK_MemberConstituencies_Constituencies">
+          <End Role="Constituencies" EntitySet="Constituencies" />
+          <End Role="MemberConstituencies" EntitySet="MemberConstituencies" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberElectionsContested_Constituencies" Association="MNISModel.FK_MemberElectionsContested_Constituencies">
+          <End Role="Constituencies" EntitySet="Constituencies" />
+          <End Role="MemberElectionsContested" EntitySet="MemberElectionsContesteds" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConstituencyResults_Constituencies" Association="MNISModel.FK_ConstituencyResults_Constituencies">
+          <End Role="Constituency" EntitySet="Constituencies" />
+          <End Role="ConstituencyResult" EntitySet="ConstituencyResults" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Members_Countries" Association="MNISModel.FK_Members_Countries">
+          <End Role="Countries" EntitySet="Countries" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_OtherParliaments_Countries" Association="MNISModel.FK_OtherParliaments_Countries">
+          <End Role="Countries" EntitySet="Countries" />
+          <End Role="OtherParliaments" EntitySet="OtherParliaments" />
+        </AssociationSet>
+        <AssociationSet Name="FK_GovernmentPostDepartments_Departments" Association="MNISModel.FK_GovernmentPostDepartments_Departments">
+          <End Role="Departments" EntitySet="Departments" />
+          <End Role="GovernmentPostDepartments" EntitySet="GovernmentPostDepartments" />
+        </AssociationSet>
+        <AssociationSet Name="FK_OppositionPostDepartments_Departments" Association="MNISModel.FK_OppositionPostDepartments_Departments">
+          <End Role="Departments" EntitySet="Departments" />
+          <End Role="OppositionPostDepartments" EntitySet="OppositionPostDepartments" />
+        </AssociationSet>
+        <AssociationSet Name="FK_AnsweringBodies_Departments" Association="MNISModel.FK_AnsweringBodies_Departments">
+          <End Role="Department" EntitySet="Departments" />
+          <End Role="AnsweringBody" EntitySet="AnsweringBodies" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberDisqualification_DisqualificationTypes" Association="MNISModel.FK_MemberDisqualification_DisqualificationTypes">
+          <End Role="DisqualificationTypes" EntitySet="DisqualificationTypes" />
+          <End Role="MemberDisqualifications" EntitySet="MemberDisqualifications" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Elections_ElectionTypes" Association="MNISModel.FK_Elections_ElectionTypes">
+          <End Role="Elections" EntitySet="Elections" />
+          <End Role="ElectionTypes" EntitySet="ElectionTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberConstituencies_Elections" Association="MNISModel.FK_MemberConstituencies_Elections">
+          <End Role="Elections" EntitySet="Elections" />
+          <End Role="MemberConstituencies" EntitySet="MemberConstituencies" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberElectionsContested_Elections" Association="MNISModel.FK_MemberElectionsContested_Elections">
+          <End Role="Elections" EntitySet="Elections" />
+          <End Role="MemberElectionsContested" EntitySet="MemberElectionsContesteds" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConstituencyResults_Elections" Association="MNISModel.FK_ConstituencyResults_Elections">
+          <End Role="Election" EntitySet="Elections" />
+          <End Role="ConstituencyResult" EntitySet="ConstituencyResults" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberConstituencies_EndReasons" Association="MNISModel.FK_MemberConstituencies_EndReasons">
+          <End Role="EndReasons" EntitySet="EndReasons" />
+          <End Role="MemberConstituencies" EntitySet="MemberConstituencies" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberHouseMemberships_EndReasons" Association="MNISModel.FK_MemberHouseMemberships_EndReasons">
+          <End Role="EndReasons" EntitySet="EndReasons" />
+          <End Role="MemberHouseMemberships" EntitySet="MemberHouseMemberships" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberConstituencies_EntryTypes" Association="MNISModel.FK_MemberConstituencies_EntryTypes">
+          <End Role="EntryTypes" EntitySet="EntryTypes" />
+          <End Role="MemberConstituencies" EntitySet="MemberConstituencies" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberExperiences_ExperienceTypes" Association="MNISModel.FK_MemberExperiences_ExperienceTypes">
+          <End Role="ExperienceTypes" EntitySet="ExperienceTypes" />
+          <End Role="MemberExperiences" EntitySet="MemberExperiences" />
+        </AssociationSet>
+        <AssociationSet Name="FK_GovernmentPostDepartments_GovernmentPosts" Association="MNISModel.FK_GovernmentPostDepartments_GovernmentPosts">
+          <End Role="GovernmentPostDepartments" EntitySet="GovernmentPostDepartments" />
+          <End Role="GovernmentPosts" EntitySet="GovernmentPosts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_GovernmentPosts_GovernmentRanks" Association="MNISModel.FK_GovernmentPosts_GovernmentRanks">
+          <End Role="GovernmentPosts" EntitySet="GovernmentPosts" />
+          <End Role="GovernmentRanks" EntitySet="GovernmentRanks" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberGovernmentPosts_GovernmentPosts" Association="MNISModel.FK_MemberGovernmentPosts_GovernmentPosts">
+          <End Role="GovernmentPosts" EntitySet="GovernmentPosts" />
+          <End Role="MemberGovernmentPosts" EntitySet="MemberGovernmentPosts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_CommonsPreferredNameHonouraryPrefixes_HonouraryPrefixes" Association="MNISModel.FK_CommonsPreferredNameHonouraryPrefixes_HonouraryPrefixes">
+          <End Role="HonouraryPrefixes" EntitySet="HonouraryPrefixes" />
+          <End Role="MemberPreferredNameHonouraryPrefixes" EntitySet="MemberPreferredNameHonouraryPrefixes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberHonours_HonourLists" Association="MNISModel.FK_MemberHonours_HonourLists">
+          <End Role="HonourLists" EntitySet="HonourLists" />
+          <End Role="MemberHonours" EntitySet="MemberHonours" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Honours_HonourTypes" Association="MNISModel.FK_Honours_HonourTypes">
+          <End Role="Honours" EntitySet="Honours" />
+          <End Role="HonourTypes" EntitySet="HonourTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberHonours_Honours" Association="MNISModel.FK_MemberHonours_Honours">
+          <End Role="Honours" EntitySet="Honours" />
+          <End Role="MemberHonours" EntitySet="MemberHonours" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberHouseMemberships_Houses" Association="MNISModel.FK_MemberHouseMemberships_Houses">
+          <End Role="Houses" EntitySet="Houses" />
+          <End Role="MemberHouseMemberships" EntitySet="MemberHouseMemberships" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberMaidenSpeeches_Houses" Association="MNISModel.FK_MemberMaidenSpeeches_Houses">
+          <End Role="Houses" EntitySet="Houses" />
+          <End Role="MemberMaidenSpeeches" EntitySet="MemberMaidenSpeeches" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberLordsMembershipTypes_LordsMembershipTypes" Association="MNISModel.FK_MemberLordsMembershipTypes_LordsMembershipTypes">
+          <End Role="LordsMembershipTypes" EntitySet="LordsMembershipTypes" />
+          <End Role="MemberLordsMembershipTypes" EntitySet="MemberLordsMembershipTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberLordsPreferredNames_LordsRanks" Association="MNISModel.FK_MemberLordsPreferredNames_LordsRanks">
+          <End Role="LordsRanks" EntitySet="LordsRanks" />
+          <End Role="MemberLordsPreferredNames" EntitySet="MemberLordsPreferredNames" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberAddresses_Member" Association="MNISModel.FK_MemberAddresses_Member">
+          <End Role="MemberAddresses" EntitySet="MemberAddresses" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberBiographies_Member" Association="MNISModel.FK_MemberBiographies_Member">
+          <End Role="MemberBiographies" EntitySet="MemberBiographies" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberCommitteeChairs_MemberCommittees" Association="MNISModel.FK_MemberCommitteeChairs_MemberCommittees">
+          <End Role="MemberCommitteeChairs" EntitySet="MemberCommitteeChairs" />
+          <End Role="MemberCommittees" EntitySet="MemberCommittees" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberCommittees_Member" Association="MNISModel.FK_MemberCommittees_Member">
+          <End Role="MemberCommittees" EntitySet="MemberCommittees" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberConstituencies_Member" Association="MNISModel.FK_MemberConstituencies_Member">
+          <End Role="MemberConstituencies" EntitySet="MemberConstituencies" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberConstituencies_Titles" Association="MNISModel.FK_MemberConstituencies_Titles">
+          <End Role="MemberConstituencies" EntitySet="MemberConstituencies" />
+          <End Role="Titles" EntitySet="Titles" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberDisqualifications_MemberStatuses" Association="MNISModel.FK_MemberDisqualifications_MemberStatuses">
+          <End Role="MemberDisqualifications" EntitySet="MemberDisqualifications" />
+          <End Role="MemberStatuses" EntitySet="MemberStatuses" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberElectionsContested_Member" Association="MNISModel.FK_MemberElectionsContested_Member">
+          <End Role="MemberElectionsContested" EntitySet="MemberElectionsContesteds" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberExperiences_Member" Association="MNISModel.FK_MemberExperiences_Member">
+          <End Role="MemberExperiences" EntitySet="MemberExperiences" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberGovernmentPosts_Member" Association="MNISModel.FK_MemberGovernmentPosts_Member">
+          <End Role="MemberGovernmentPosts" EntitySet="MemberGovernmentPosts" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberHonours_Member" Association="MNISModel.FK_MemberHonours_Member">
+          <End Role="MemberHonours" EntitySet="MemberHonours" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberHouseMemberships_Member" Association="MNISModel.FK_MemberHouseMemberships_Member">
+          <End Role="MemberHouseMemberships" EntitySet="MemberHouseMemberships" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberLeaveOfAbsence_MemberStatuses" Association="MNISModel.FK_MemberLeaveOfAbsence_MemberStatuses">
+          <End Role="MemberLeaveOfAbsence" EntitySet="MemberLeaveOfAbsences" />
+          <End Role="MemberStatuses" EntitySet="MemberStatuses" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberLordsMembershipTypes_Member" Association="MNISModel.FK_MemberLordsMembershipTypes_Member">
+          <End Role="MemberLordsMembershipTypes" EntitySet="MemberLordsMembershipTypes" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_LordsPreferredNames_MemberPreferredNames" Association="MNISModel.FK_LordsPreferredNames_MemberPreferredNames">
+          <End Role="MemberLordsPreferredNames" EntitySet="MemberLordsPreferredNames" />
+          <End Role="MemberPreferredNames" EntitySet="MemberPreferredNames" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberMaidenSpeeches_Members" Association="MNISModel.FK_MemberMaidenSpeeches_Members">
+          <End Role="MemberMaidenSpeeches" EntitySet="MemberMaidenSpeeches" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_LordsOaths_Member" Association="MNISModel.FK_LordsOaths_Member">
+          <End Role="MemberOaths" EntitySet="MemberOaths" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberObituaries_Member" Association="MNISModel.FK_MemberObituaries_Member">
+          <End Role="MemberObituaries" EntitySet="MemberObituaries" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberOppositionPosts_Member" Association="MNISModel.FK_MemberOppositionPosts_Member">
+          <End Role="MemberOppositionPosts" EntitySet="MemberOppositionPosts" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberOppositionPosts_OppositionPosts" Association="MNISModel.FK_MemberOppositionPosts_OppositionPosts">
+          <End Role="MemberOppositionPosts" EntitySet="MemberOppositionPosts" />
+          <End Role="OppositionPosts" EntitySet="OppositionPosts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberOtherParliaments_Member" Association="MNISModel.FK_MemberOtherParliaments_Member">
+          <End Role="MemberOtherParliaments" EntitySet="MemberOtherParliaments" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberOtherParliaments_OtherParliaments" Association="MNISModel.FK_MemberOtherParliaments_OtherParliaments">
+          <End Role="MemberOtherParliaments" EntitySet="MemberOtherParliaments" />
+          <End Role="OtherParliaments" EntitySet="OtherParliaments" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberParliamentaryPosts_Member" Association="MNISModel.FK_MemberParliamentaryPosts_Member">
+          <End Role="MemberParliamentaryPosts" EntitySet="MemberParliamentaryPosts" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberParliamentaryPosts_ParliamentaryPosts" Association="MNISModel.FK_MemberParliamentaryPosts_ParliamentaryPosts">
+          <End Role="MemberParliamentaryPosts" EntitySet="MemberParliamentaryPosts" />
+          <End Role="ParliamentaryPosts" EntitySet="ParliamentaryPosts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberParties_Member" Association="MNISModel.FK_MemberParties_Member">
+          <End Role="MemberParties" EntitySet="MemberParties" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberParties_Parties" Association="MNISModel.FK_MemberParties_Parties">
+          <End Role="MemberParties" EntitySet="MemberParties" />
+          <End Role="Parties" EntitySet="Parties" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberParties_PartySubTypes" Association="MNISModel.FK_MemberParties_PartySubTypes">
+          <End Role="MemberParties" EntitySet="MemberParties" />
+          <End Role="PartySubTypes" EntitySet="PartySubTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_CommonsPreferredNameHonouraryPrefixes_CommonsPreferredNames" Association="MNISModel.FK_CommonsPreferredNameHonouraryPrefixes_CommonsPreferredNames">
+          <End Role="MemberPreferredNameHonouraryPrefixes" EntitySet="MemberPreferredNameHonouraryPrefixes" />
+          <End Role="MemberPreferredNames" EntitySet="MemberPreferredNames" />
+        </AssociationSet>
+        <AssociationSet Name="FK_CommonsPreferredNames_Member" Association="MNISModel.FK_CommonsPreferredNames_Member">
+          <End Role="MemberPreferredNames" EntitySet="MemberPreferredNames" />
+          <End Role="Members" EntitySet="Members" />
+        </AssociationSet>
+        <AssociationSet Name="FK_CommonsPreferredNames_Titles" Association="MNISModel.FK_CommonsPreferredNames_Titles">
+          <End Role="MemberPreferredNames" EntitySet="MemberPreferredNames" />
+          <End Role="Titles" EntitySet="Titles" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberExclusions_Member" Association="MNISModel.FK_MemberExclusions_Member">
+          <End Role="Members" EntitySet="Members" />
+          <End Role="MemberStatuses" EntitySet="MemberStatuses" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberStaff_Members" Association="MNISModel.FK_MemberStaff_Members">
+          <End Role="Members" EntitySet="Members" />
+          <End Role="MemberStaff" EntitySet="MemberStaffs" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberKnownAs_Members" Association="MNISModel.FK_MemberKnownAs_Members">
+          <End Role="Member" EntitySet="Members" />
+          <End Role="MemberKnownA" EntitySet="MemberKnownAs" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConstituencyCandidates_Members" Association="MNISModel.FK_ConstituencyCandidates_Members">
+          <End Role="Member" EntitySet="Members" />
+          <End Role="ConstituencyCandidate" EntitySet="ConstituencyCandidates" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberStaff_Titles" Association="MNISModel.FK_MemberStaff_Titles">
+          <End Role="MemberStaff" EntitySet="MemberStaffs" />
+          <End Role="Titles" EntitySet="Titles" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberExclusions_ExclusionTypes" Association="MNISModel.FK_MemberExclusions_ExclusionTypes">
+          <End Role="MemberStatuses" EntitySet="MemberStatuses" />
+          <End Role="Statuses" EntitySet="Statuses" />
+        </AssociationSet>
+        <AssociationSet Name="FK_MemberSuspensions_MemberStatuses" Association="MNISModel.FK_MemberSuspensions_MemberStatuses">
+          <End Role="MemberStatuses" EntitySet="MemberStatuses" />
+          <End Role="MemberSuspensions" EntitySet="MemberSuspensions" />
+        </AssociationSet>
+        <AssociationSet Name="FK_OppositionPostDepartments_OppositionPosts" Association="MNISModel.FK_OppositionPostDepartments_OppositionPosts">
+          <End Role="OppositionPostDepartments" EntitySet="OppositionPostDepartments" />
+          <End Role="OppositionPosts" EntitySet="OppositionPosts" />
+        </AssociationSet>
+        <AssociationSet Name="FK_OppositionPosts_OppositionRanks" Association="MNISModel.FK_OppositionPosts_OppositionRanks">
+          <End Role="OppositionPost" EntitySet="OppositionPosts" />
+          <End Role="OppositionRank" EntitySet="OppositionRanks" />
+        </AssociationSet>
+        <AssociationSet Name="FK_OtherParliaments_ParliamentTypes" Association="MNISModel.FK_OtherParliaments_ParliamentTypes">
+          <End Role="OtherParliaments" EntitySet="OtherParliaments" />
+          <End Role="ParliamentTypes" EntitySet="ParliamentTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ParliamentaryPosts_ParliamentaryRanks" Association="MNISModel.FK_ParliamentaryPosts_ParliamentaryRanks">
+          <End Role="ParliamentaryPosts" EntitySet="ParliamentaryPosts" />
+          <End Role="ParliamentaryRanks" EntitySet="ParliamentaryRanks" />
+        </AssociationSet>
+        <AssociationSet Name="FK_PartySubTypes_Parties1" Association="MNISModel.FK_PartySubTypes_Parties1">
+          <End Role="Parties" EntitySet="Parties" />
+          <End Role="PartySubTypes" EntitySet="PartySubTypes" />
+        </AssociationSet>
+        <AssociationSet Name="FK_Statuses_Parties" Association="MNISModel.FK_Statuses_Parties">
+          <End Role="Parties" EntitySet="Parties" />
+          <End Role="Statuses" EntitySet="Statuses" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConstituencyCandidates_Parties" Association="MNISModel.FK_ConstituencyCandidates_Parties">
+          <End Role="Party" EntitySet="Parties" />
+          <End Role="ConstituencyCandidate" EntitySet="ConstituencyCandidates" />
+        </AssociationSet>
+        <AssociationSet Name="FK_ConstituencyCandidates_ConstituencyResults" Association="MNISModel.FK_ConstituencyCandidates_ConstituencyResults">
+          <End Role="ConstituencyCandidate" EntitySet="ConstituencyCandidates" />
+          <End Role="ConstituencyResult" EntitySet="ConstituencyResults" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
